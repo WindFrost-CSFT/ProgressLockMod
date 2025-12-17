@@ -1,1 +1,2 @@
 A Server-Side-Mod which can lock game progress , In case that some Pros speedrun.
+Support Calamity mod

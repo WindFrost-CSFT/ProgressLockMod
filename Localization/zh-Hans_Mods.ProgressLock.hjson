@@ -31,288 +31,238 @@ Configs: {
 	LockItemType: {
 		// Tooltip: ""
 
-		史莱姆王: {
-			// Label: 史莱姆王
+		KingSlime: {
+			// Label: King Slime
 			// Tooltip: ""
 		}
 
-		克苏鲁之眼: {
-			// Label: 克苏鲁之眼
+		EyeOfCthulhu: {
+			// Label: Eye of Cthulhu
 			// Tooltip: ""
 		}
 
-		克苏鲁之脑: {
-			// Label: 克苏鲁之脑
+		BrainOfCthulhu: {
+			// Label: Brain of Cthulhu
 			// Tooltip: ""
 		}
 
-		世界吞噬者: {
-			// Label: 世界吞噬者
+		EaterOfWorlds: {
+			// Label: Eater of Worlds
 			// Tooltip: ""
 		}
 
-		骷髅王: {
-			// Label: 骷髅王
+		Skeletron: {
+			// Label: Skeletron
 			// Tooltip: ""
 		}
 
-		蜂王: {
-			// Label: 蜂王
+		QueenBee: {
+			// Label: Queen Bee
 			// Tooltip: ""
 		}
 
-		血肉墙: {
-			// Label: 血肉墙
+		WallOfFlesh: {
+			// Label: Wall of Flesh
 			// Tooltip: ""
 		}
 
-		机械骷髅王: {
-			// Label: 机械骷髅王
+		TheDestroyer: {
+			// Label: The Destroyer
 			// Tooltip: ""
 		}
 
-		双子魔眼: {
-			// Label: 双子魔眼
+		TheTwins: {
+			// Label: The Twins
 			// Tooltip: ""
 		}
 
-		毁灭者: {
-			// Label: 毁灭者
+		SkeletronPrime: {
+			// Label: Skeletron Prime
 			// Tooltip: ""
 		}
 
-		史莱姆皇后: {
-			// Label: 史莱姆皇后
+		QueenSlime: {
+			// Label: Queen Slime
 			// Tooltip: ""
 		}
 
-		世纪之花: {
-			// Label: 世纪之花
+		Plantera: {
+			// Label: Plantera
 			// Tooltip: ""
 		}
 
-		石巨人: {
-			// Label: 石巨人
+		Golem: {
+			// Label: Golem
 			// Tooltip: ""
 		}
 
-		猪鲨公爵: {
-			// Label: 猪鲨公爵
+		DukeFishron: {
+			// Label: Duke Fishron
 			// Tooltip: ""
 		}
 
-		光之女皇: {
-			// Label: 光之女皇
+		EmpressOfLight: {
+			// Label: Empress of Light
 			// Tooltip: ""
 		}
 
-		拜月教邪教徒: {
-			// Label: 拜月教邪教徒
+		LunaticCultist: {
+			// Label: Lunatic Cultist
 			// Tooltip: ""
 		}
 
-		月亮领主: {
-			// Label: 月亮领主
+		MoonLord: {
+			// Label: Moon Lord
 			// Tooltip: ""
 		}
 
-		荒漠灾虫: {
-			// Label: 荒漠灾虫
+		DesertScourge: {
+			// Label: Desert Scourge
 			// Tooltip: ""
 		}
 
-		克隆体: {
-			// Label: 克隆体
+		Crabulon: {
+			// Label: Crabulon
 			// Tooltip: ""
 		}
 
-		史莱姆之神: {
-			// Label: 史莱姆之神
+		SlimeGod: {
+			// Label: Slime God
 			// Tooltip: ""
 		}
 
-		血肉宿主: {
-			// Label: 血肉宿主
+		TheHiveMind: {
+			// Label: The Hive Mind
 			// Tooltip: ""
 		}
 
-		蜂巢之主: {
-			// Label: 蜂巢之主
+		ThePerforators: {
+			// Label: The Perforators
 			// Tooltip: ""
 		}
 
-		渊海灾虫: {
-			// Label: 渊海灾虫
+		AquaticScourge: {
+			// Label: Aquatic Scourge
 			// Tooltip: ""
 		}
 
-		硫火元素: {
-			// Label: 硫火元素
+		BrimstoneElemental: {
+			// Label: Brimstone Elemental
 			// Tooltip: ""
 		}
 
-		灾厄: {
-			// Label: 灾厄
+		Calamitas: {
+			// Label: Calamitas
 			// Tooltip: ""
 		}
 
-		利维坦: {
-			// Label: 利维坦
+		Leviathan: {
+			// Label: Leviathan
 			// Tooltip: ""
 		}
 
-		白金星舰: {
-			// Label: 白金星舰
+		AstrumAureus: {
+			// Label: Astrum Aureus
 			// Tooltip: ""
 		}
 
-		瘟疫使者: {
-			// Label: 瘟疫使者
+		ThePlaguebringerGoliath: {
+			// Label: Plaguebringer Goliath
 			// Tooltip: ""
 		}
 
-		拉瓦纳: {
-			// Label: 拉瓦纳
+		Ravager: {
+			// Label: Ravager
 			// Tooltip: ""
 		}
 
-		星神游龙: {
-			// Label: 星神游龙
+		AstrumDeus: {
+			// Label: Astrum Deus
 			// Tooltip: ""
 		}
 
-		哥布林军队: {
-			// Label: 哥布林军队
+		GoblinArmy: {
+			// Label: Goblin Army
 			// Tooltip: ""
 		}
 
-		海盗入侵: {
-			// Label: 海盗入侵
+		PirateInvasion: {
+			// Label: Pirate Invasion
 			// Tooltip: ""
 		}
 
-		南瓜月: {
-			// Label: 南瓜月
+		PumpkinMoon: {
+			// Label: Pumpkin Moon
 			// Tooltip: ""
 		}
 
-		霜月: {
-			// Label: 霜月
+		FrostMoon: {
+			// Label: Frost Moon
 			// Tooltip: ""
 		}
 
-		火星暴乱: {
-			// Label: 火星暴乱
+		MartianMadness: {
+			// Label: Martian Madness
 			// Tooltip: ""
 		}
 
-		血月: {
-			// Label: 血月
+		BloodMoon: {
+			// Label: Blood Moon
 			// Tooltip: ""
 		}
 
-		日食: {
-			// Label: 日食
+		SolarEclipse: {
+			// Label: Solar Eclipse
 			// Tooltip: ""
 		}
 
-		菌生蟹: {
-			// Label: 菌生蟹
+		Providence: {
+			// Label: Providence, the Profaned Goddess
 			// Tooltip: ""
 		}
 
-		腐巢意志: {
-			// Label: 腐巢意志
+		StormWeaver: {
+			// Label: Storm Weaver
 			// Tooltip: ""
 		}
 
-		硫磺火元素: {
-			// Label: 硫磺火元素
+		CeaselessVoid: {
+			// Label: Ceaseless Void
 			// Tooltip: ""
 		}
 
-		极地之灵: {
-			// Label: 极地之灵
+		Signus: {
+			// Label: Signus, Envoy of the Devourer
 			// Tooltip: ""
 		}
 
-		灾厄之影: {
-			// Label: 灾厄之影
+		Polterghast: {
+			// Label: Polterghast
 			// Tooltip: ""
 		}
 
-		利维坦和阿娜希塔: {
-			// Label: 利维坦和阿娜希塔
+		OldDuke: {
+			// Label: Old Duke
 			// Tooltip: ""
 		}
 
-		瘟疫使者歌莉娅: {
-			// Label: 瘟疫使者歌莉娅
+		DevourerOfGods: {
+			// Label: Devourer of Gods
 			// Tooltip: ""
 		}
 
-		毁灭魔像: {
-			// Label: 毁灭魔像
+		Yharon: {
+			// Label: Yharon, Dragon of Rebirth
 			// Tooltip: ""
 		}
 
-		亵渎守卫: {
-			// Label: 亵渎守卫
+		ExoMechs: {
+			// Label: Exo Mechs
 			// Tooltip: ""
 		}
 
-		痴愚金龙: {
-			// Label: 痴愚金龙
-			// Tooltip: ""
-		}
-
-		亵渎天神普罗维登斯: {
-			// Label: 亵渎天神普罗维登斯
-			// Tooltip: ""
-		}
-
-		风暴编织者: {
-			// Label: 风暴编织者
-			// Tooltip: ""
-		}
-
-		无尽虚空: {
-			// Label: 无尽虚空
-			// Tooltip: ""
-		}
-
-		神之使徒西格纳斯: {
-			// Label: 神之使徒西格纳斯
-			// Tooltip: ""
-		}
-
-		噬魂幽花: {
-			// Label: 噬魂幽花
-			// Tooltip: ""
-		}
-
-		硫海遗爵: {
-			// Label: 硫海遗爵
-			// Tooltip: ""
-		}
-
-		神明吞噬者: {
-			// Label: 神明吞噬者
-			// Tooltip: ""
-		}
-
-		重生之龙犽戎: {
-			// Label: 重生之龙犽戎
-			// Tooltip: ""
-		}
-
-		星流巨械: {
-			// Label: 星流巨械
-			// Tooltip: ""
-		}
-
-		至尊女巫灾厄: {
-			// Label: 至尊女巫灾厄
+		SupremeCalamitas: {
+			// Label: Supreme Calamitas
 			// Tooltip: ""
 		}
 	}
@@ -336,130 +286,6 @@ Configs: {
 		}
 	}
 
-	VanillaLockItem: {
-		Tooltip: ""
-
-		史莱姆王: {
-			Label: 史莱姆王
-			Tooltip: ""
-		}
-
-		克苏鲁之眼: {
-			Label: 克苏鲁之眼
-			Tooltip: ""
-		}
-
-		克苏鲁之脑: {
-			Label: 克苏鲁之脑
-			Tooltip: ""
-		}
-
-		世界吞噬者: {
-			Label: 世界吞噬者
-			Tooltip: ""
-		}
-
-		骷髅王: {
-			Label: 骷髅王
-			Tooltip: ""
-		}
-
-		蜂王: {
-			Label: 蜂王
-			Tooltip: ""
-		}
-
-		血肉墙: {
-			Label: 血肉墙
-			Tooltip: ""
-		}
-
-		机械骷髅王: {
-			Label: 机械骷髅王
-			Tooltip: ""
-		}
-
-		双子魔眼: {
-			Label: 双子魔眼
-			Tooltip: ""
-		}
-
-		毁灭者: {
-			Label: 毁灭者
-			Tooltip: ""
-		}
-
-		史莱姆皇后: {
-			Label: 史莱姆皇后
-			Tooltip: ""
-		}
-
-		世纪之花: {
-			Label: 世纪之花
-			Tooltip: ""
-		}
-
-		石巨人: {
-			Label: 石巨人
-			Tooltip: ""
-		}
-
-		猪鲨公爵: {
-			Label: 猪鲨公爵
-			Tooltip: ""
-		}
-
-		光之女皇: {
-			Label: 光之女皇
-			Tooltip: ""
-		}
-
-		拜月教邪教徒: {
-			Label: 拜月教邪教徒
-			Tooltip: ""
-		}
-
-		月亮领主: {
-			Label: 月亮领主
-			Tooltip: ""
-		}
-
-		奥萨蒂哦奥: {
-			// Label: 奥萨蒂哦奥
-			// Tooltip: ""
-		}
-
-		fasdas: {
-			// Label: fasdas
-			// Tooltip: ""
-		}
-
-		asdasdas: {
-			// Label: asdasdas
-			// Tooltip: ""
-		}
-
-		asdas: {
-			// Label: asdas
-			// Tooltip: ""
-		}
-
-		g: {
-			// Label: g
-			// Tooltip: ""
-		}
-
-		afag: {
-			// Label: afag
-			// Tooltip: ""
-		}
-
-		fasdadsas: {
-			// Label: fasdadsas
-			// Tooltip: ""
-		}
-	}
-
 	CalamityBossEntry: {
 		Tooltip: ""
 
@@ -476,170 +302,6 @@ Configs: {
 		UnlockTimeReadable: {
 			Label: 时长
 			Tooltip: ""
-		}
-	}
-
-	CalamityLockItem: {
-		Tooltip: ""
-
-		荒漠灾虫: {
-			Label: 荒漠灾虫
-			Tooltip: ""
-		}
-
-		菌生蟹: {
-			Label: 菌生蟹
-			Tooltip: ""
-		}
-
-		腐巢意志: {
-			Label: 腐巢意志
-			Tooltip: ""
-		}
-
-		血肉宿主: {
-			Label: 血肉宿主
-			Tooltip: ""
-		}
-
-		史莱姆之神: {
-			Label: 史莱姆之神
-			Tooltip: ""
-		}
-
-		渊海灾虫: {
-			Label: 渊海灾虫
-			Tooltip: ""
-		}
-
-		硫磺火元素: {
-			Label: 硫磺火元素
-			Tooltip: ""
-		}
-
-		极地之灵: {
-			Label: 极地之灵
-			Tooltip: ""
-		}
-
-		灾厄之影: {
-			Label: 灾厄之影
-			Tooltip: ""
-		}
-
-		利维坦和阿娜希塔: {
-			Label: 利维坦和阿娜希塔
-			Tooltip: ""
-		}
-
-		白金星舰: {
-			Label: 白金星舰
-			Tooltip: ""
-		}
-
-		瘟疫使者歌莉娅: {
-			Label: 瘟疫使者歌莉娅
-			Tooltip: ""
-		}
-
-		毁灭魔像: {
-			Label: 毁灭魔像
-			Tooltip: ""
-		}
-
-		星神游龙: {
-			Label: 星神游龙
-			Tooltip: ""
-		}
-
-		亵渎守卫: {
-			Label: 亵渎守卫
-			Tooltip: ""
-		}
-
-		痴愚金龙: {
-			Label: 痴愚金龙
-			Tooltip: ""
-		}
-
-		亵渎天神普罗维登斯: {
-			Label: 亵渎天神，普罗维登斯
-			Tooltip: ""
-		}
-
-		风暴编织者: {
-			Label: 风暴编织者
-			Tooltip: ""
-		}
-
-		无尽虚空: {
-			Label: 无尽虚空
-			Tooltip: ""
-		}
-
-		神之使徒西格纳斯: {
-			Label: 神之使徒，西格纳斯
-			Tooltip: ""
-		}
-
-		噬魂幽花: {
-			Label: 噬魂幽花
-			Tooltip: ""
-		}
-
-		硫海遗爵: {
-			Label: 硫海遗爵
-			Tooltip: ""
-		}
-
-		神明吞噬者: {
-			Label: 神明吞噬者
-			Tooltip: ""
-		}
-
-		重生之龙犽戎: {
-			Label: 重生之龙，犽戎
-			Tooltip: ""
-		}
-
-		星流巨械: {
-			Label: 星流巨械
-			Tooltip: ""
-		}
-
-		至尊女巫灾厄: {
-			Label: 至尊女巫，灾厄
-			Tooltip: ""
-		}
-
-		fasdas: {
-			// Label: fasdas
-			// Tooltip: ""
-		}
-
-		asdasdas: {
-			// Label: asdasdas
-			// Tooltip: ""
-		}
-
-		asdas: {
-			// Label: asdas
-			// Tooltip: ""
-		}
-
-		g: {
-			// Label: g
-			// Tooltip: ""
-		}
-
-		afag: {
-			// Label: afag
-			// Tooltip: ""
-		}
-
-		fasdadsas: {
-			// Label: fasdadsas
-			// Tooltip: ""
 		}
 	}
 
@@ -663,57 +325,280 @@ Configs: {
 	}
 
 	VanillaEventLockItem: {
-		Tooltip: ""
-
-		哥布林军队: {
-			Label: 哥布林军队
+		日食: {
 			Tooltip: ""
-		}
-
-		血月: {
-			Label: 血月
-			Tooltip: ""
-		}
-
-		撒旦军队: {
-			Label: 撒旦军队
-			Tooltip: ""
-		}
-
-		海盗入侵: {
-			Label: 海盗入侵
-			Tooltip: ""
-		}
-
-		南瓜月: {
-			Label: 南瓜月
-			Tooltip: ""
-		}
-
-		雪人军团: {
-			Label: 雪人军团
-			Tooltip: ""
-		}
-
-		火星暴乱: {
-			Label: 火星暴乱
-			Tooltip: ""
-		}
-
-		月亮事件: {
-			Label: 月亮事件
-			Tooltip: ""
+			Label: 日食
 		}
 
 		霜月: {
-			Label: 霜月
 			Tooltip: ""
+			Label: 霜月
 		}
 
-		日食: {
-			Label: 日食
+		月亮事件: {
 			Tooltip: ""
+			Label: 月亮事件
 		}
+
+		火星暴乱: {
+			Tooltip: ""
+			Label: 火星暴乱
+		}
+
+		雪人军团: {
+			Tooltip: ""
+			Label: 雪人军团
+		}
+
+		南瓜月: {
+			Tooltip: ""
+			Label: 南瓜月
+		}
+
+		海盗入侵: {
+			Tooltip: ""
+			Label: 海盗入侵
+		}
+
+		撒旦军队: {
+			Tooltip: ""
+			Label: 撒旦军队
+		}
+
+		血月: {
+			Tooltip: ""
+			Label: 血月
+		}
+
+		哥布林军队: {
+			Tooltip: ""
+			Label: 哥布林军队
+		}
+
+		Tooltip: ""
+	}
+
+	CalamityLockItem: {
+		至尊女巫灾厄: {
+			Tooltip: ""
+			Label: 至尊女巫，灾厄
+		}
+
+		星流巨械: {
+			Tooltip: ""
+			Label: 星流巨械
+		}
+
+		重生之龙犽戎: {
+			Tooltip: ""
+			Label: 重生之龙，犽戎
+		}
+
+		神明吞噬者: {
+			Tooltip: ""
+			Label: 神明吞噬者
+		}
+
+		硫海遗爵: {
+			Tooltip: ""
+			Label: 硫海遗爵
+		}
+
+		噬魂幽花: {
+			Tooltip: ""
+			Label: 噬魂幽花
+		}
+
+		神之使徒西格纳斯: {
+			Tooltip: ""
+			Label: 神之使徒，西格纳斯
+		}
+
+		无尽虚空: {
+			Tooltip: ""
+			Label: 无尽虚空
+		}
+
+		风暴编织者: {
+			Tooltip: ""
+			Label: 风暴编织者
+		}
+
+		亵渎天神普罗维登斯: {
+			Tooltip: ""
+			Label: 亵渎天神，普罗维登斯
+		}
+
+		痴愚金龙: {
+			Tooltip: ""
+			Label: 痴愚金龙
+		}
+
+		亵渎守卫: {
+			Tooltip: ""
+			Label: 亵渎守卫
+		}
+
+		星神游龙: {
+			Tooltip: ""
+			Label: 星神游龙
+		}
+
+		毁灭魔像: {
+			Tooltip: ""
+			Label: 毁灭魔像
+		}
+
+		瘟疫使者歌莉娅: {
+			Tooltip: ""
+			Label: 瘟疫使者歌莉娅
+		}
+
+		白金星舰: {
+			Tooltip: ""
+			Label: 白金星舰
+		}
+
+		利维坦和阿娜希塔: {
+			Tooltip: ""
+			Label: 利维坦和阿娜希塔
+		}
+
+		灾厄之影: {
+			Tooltip: ""
+			Label: 灾厄之影
+		}
+
+		极地之灵: {
+			Tooltip: ""
+			Label: 极地之灵
+		}
+
+		硫磺火元素: {
+			Tooltip: ""
+			Label: 硫磺火元素
+		}
+
+		渊海灾虫: {
+			Tooltip: ""
+			Label: 渊海灾虫
+		}
+
+		史莱姆之神: {
+			Tooltip: ""
+			Label: 史莱姆之神
+		}
+
+		血肉宿主: {
+			Tooltip: ""
+			Label: 血肉宿主
+		}
+
+		腐巢意志: {
+			Tooltip: ""
+			Label: 腐巢意志
+		}
+
+		菌生蟹: {
+			Tooltip: ""
+			Label: 菌生蟹
+		}
+
+		荒漠灾虫: {
+			Tooltip: ""
+			Label: 荒漠灾虫
+		}
+
+		Tooltip: ""
+	}
+
+	VanillaLockItem: {
+		月亮领主: {
+			Tooltip: ""
+			Label: 月亮领主
+		}
+
+		拜月教邪教徒: {
+			Tooltip: ""
+			Label: 拜月教邪教徒
+		}
+
+		光之女皇: {
+			Tooltip: ""
+			Label: 光之女皇
+		}
+
+		猪鲨公爵: {
+			Tooltip: ""
+			Label: 猪鲨公爵
+		}
+
+		石巨人: {
+			Tooltip: ""
+			Label: 石巨人
+		}
+
+		世纪之花: {
+			Tooltip: ""
+			Label: 世纪之花
+		}
+
+		史莱姆皇后: {
+			Tooltip: ""
+			Label: 史莱姆皇后
+		}
+
+		毁灭者: {
+			Tooltip: ""
+			Label: 毁灭者
+		}
+
+		双子魔眼: {
+			Tooltip: ""
+			Label: 双子魔眼
+		}
+
+		机械骷髅王: {
+			Tooltip: ""
+			Label: 机械骷髅王
+		}
+
+		血肉墙: {
+			Tooltip: ""
+			Label: 血肉墙
+		}
+
+		蜂王: {
+			Tooltip: ""
+			Label: 蜂王
+		}
+
+		骷髅王: {
+			Tooltip: ""
+			Label: 骷髅王
+		}
+
+		世界吞噬者: {
+			Tooltip: ""
+			Label: 世界吞噬者
+		}
+
+		克苏鲁之脑: {
+			Tooltip: ""
+			Label: 克苏鲁之脑
+		}
+
+		克苏鲁之眼: {
+			Tooltip: ""
+			Label: 克苏鲁之眼
+		}
+
+		史莱姆王: {
+			Tooltip: ""
+			Label: 史莱姆王
+		}
+
+		Tooltip: ""
 	}
 }
 

@@ -232,7 +232,6 @@ namespace ProgressLock
             {
                 if (!IsUnlocked(lockEntry.UnlockTimeSec))
                 {
-
                     if (lockEntry.Name == VanillaEventLockItem.哥布林军队 && Main.invasionType == 1)
                         Main.invasionType = 0;
                     else if (lockEntry.Name == VanillaEventLockItem.雪人军团 && Main.invasionType == 2)
@@ -241,34 +240,52 @@ namespace ProgressLock
                         Main.invasionType = 0;
                     else if (lockEntry.Name == VanillaEventLockItem.火星暴乱 && Main.invasionType == 4)
                         Main.invasionType = 0;
-                    else if (lockEntry.Name == VanillaEventLockItem.南瓜月)
+                    else if (lockEntry.Name == VanillaEventLockItem.南瓜月 && Main.pumpkinMoon)
                         Main.pumpkinMoon = false;
                     else if (lockEntry.Name == VanillaEventLockItem.撒旦军队 && DD2Event.Ongoing)
                         DD2Event.StopInvasion();
-                    else if (lockEntry.Name == VanillaEventLockItem.霜月)
+                    else if (lockEntry.Name == VanillaEventLockItem.霜月 && Main.snowMoon)
                         Main.snowMoon = false;
-                    else if (lockEntry.Name == VanillaEventLockItem.血月)
+                    else if (lockEntry.Name == VanillaEventLockItem.血月 && Main.bloodMoon)
                         Main.bloodMoon = false;
-                    else if (lockEntry.Name == VanillaEventLockItem.日食)
+                    else if (lockEntry.Name == VanillaEventLockItem.日食 && Main.eclipse)
                         Main.eclipse = false;
-                    else if (lockEntry.Name == VanillaEventLockItem.月亮事件)
+                    
+                    else if (
+                         lockEntry.Name == VanillaEventLockItem.月亮事件 && 
+                         NPC.AnyNPCs(NPCID.LunarTowerSolar) ||
+                         NPC.AnyNPCs(NPCID.LunarTowerVortex) ||
+                         NPC.AnyNPCs(NPCID.LunarTowerNebula) ||
+                         NPC.AnyNPCs(NPCID.LunarTowerStardust))
                     {
-                        
-                        if (Main.moonPhase == 0 && !Main.dayTime)
-                        {
-                            Main.moonPhase = 1; // 改变月相以阻止事件触发
-                        }
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                if (Main.npc[i].active &&
+                                    (Main.npc[i].type == NPCID.LunarTowerSolar ||
+                                     Main.npc[i].type == NPCID.LunarTowerVortex ||
+                                     Main.npc[i].type == NPCID.LunarTowerNebula ||
+                                     Main.npc[i].type == NPCID.LunarTowerStardust))
+                                {
+                                    Main.npc[i].active = false;
+                                }
+                            
+                            }   
                     }
-
+                    else
+                    {
+                        return;
+                    }
+                    if (config.ShowMention)
+                    {
+                        DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Instance.FirstTime).AddSeconds(lockEntry.UnlockTimeSec);
+                        Main.NewText($"事件 [{lockEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                    }
+                    break;
                 }
 
                 
                 
-                if (config.ShowMention)
-                {
-                   // DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Instance.FirstTime).AddSeconds(lockEntry.UnlockTimeSec);
-                    //Main.NewText($"事件 [{lockEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
-                }
+                
                 
             }
         }

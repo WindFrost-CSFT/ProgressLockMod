@@ -22,7 +22,8 @@ namespace ProgressLock
 
         public static ProgressLockConfig Instance { get; private set; }
 
-        
+
+        [DefaultValue("2025-12-19 10:30:10")]
         public string FirstTime { get; set; } = "2025-12-19 10:30:10";
 
         public List<VanillaBossEntry> VanillaBossEntryList { get; set; }
@@ -70,9 +71,9 @@ namespace ProgressLock
             {
                 Main.NewText("进度锁配置已更新！", 100, 255, 100);
             }
-            Main.NewText($"配置更新 - Boss数量: {VanillaBossEntryList?.Count ?? 0}", 100, 255, 100);
-            Main.NewText($"FirstTime: {FirstTime}", 100, 255, 100);
-            Main.NewText($"ShowMention: {ShowMention}", 100, 255, 100);
+            //Main.NewText($"配置更新 - Boss数量: {VanillaBossEntryList?.Count ?? 0}", 100, 255, 100);
+            //Main.NewText($"FirstTime: {FirstTime}", 100, 255, 100);
+            //Main.NewText($"ShowMention: {ShowMention}", 100, 255, 100);
         }
     }
 
@@ -82,10 +83,10 @@ namespace ProgressLock
         public VanillaLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        
+
         public long UnlockTimeSec { get; set; } = 50;
 
-        [JsonIgnore]
+        
         public string UnlockTimeReadable
         {
             get
@@ -114,10 +115,10 @@ namespace ProgressLock
         public CalamityLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        
+
         public long UnlockTimeSec { get; set; } = 50;
 
-        [JsonIgnore]
+        
         public string UnlockTimeReadable
         {
             get
@@ -146,10 +147,10 @@ namespace ProgressLock
         public VanillaEventLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        
+
         public long UnlockTimeSec { get; set; } = 50;
 
-        [JsonIgnore]
+        
         public string UnlockTimeReadable
         {
             get

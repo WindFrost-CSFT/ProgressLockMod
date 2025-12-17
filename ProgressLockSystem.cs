@@ -266,8 +266,8 @@ namespace ProgressLock
                 
                 if (config.ShowMention)
                 {
-                    DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Instance.FirstTime).AddSeconds(lockEntry.UnlockTimeSec);
-                    Main.NewText($"事件 [{lockEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                   // DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Instance.FirstTime).AddSeconds(lockEntry.UnlockTimeSec);
+                    //Main.NewText($"事件 [{lockEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
                 }
                 
             }

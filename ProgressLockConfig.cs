@@ -11,6 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
+using Newtonsoft.Json;
 using tModPorter;
 
 namespace ProgressLock
@@ -19,165 +20,157 @@ namespace ProgressLock
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        
         public static ProgressLockConfig Instance { get; private set; }
 
+        
+        public string FirstTime { get; set; } = "2025-12-19 10:30:10";
 
+        public List<VanillaBossEntry> VanillaBossEntryList { get; set; }
 
+        public List<CalamityBossEntry> CalamityBossEntryList { get; set; }
 
-        [DefaultValue("2025-12-19 10:30:10")]
-        public string FirstTime;
-
-
-        public List<VanillaBossEntry> VanillaBossEntryList = new List<VanillaBossEntry>
-        {
-            new VanillaBossEntry { Name = VanillaLockItem.史莱姆王 ,UnlockTimeSec = 1000},
-            new VanillaBossEntry { Name = VanillaLockItem.世界吞噬者,UnlockTimeSec = 2000},
-            new VanillaBossEntry { Name = VanillaLockItem.血肉墙, UnlockTimeSec = 3000}
-        };
-
-        public List<CalamityBossEntry> CalamityBossEntryList = new List<CalamityBossEntry>
-        {
-            new CalamityBossEntry { Name = CalamityLockItem.荒漠灾虫,UnlockTimeSec = 1000},
-            new CalamityBossEntry { Name = CalamityLockItem.菌生蟹,UnlockTimeSec = 2000},
-            new CalamityBossEntry { Name = CalamityLockItem.史莱姆之神, UnlockTimeSec = 3000}
-        };
-
-        public List<VanillaEventEntry> VanillaEventEntryList = new List<VanillaEventEntry>
-        {
-            new VanillaEventEntry { Name = VanillaEventLockItem.哥布林军队,UnlockTimeSec = 1000},
-            new VanillaEventEntry { Name = VanillaEventLockItem.日食,UnlockTimeSec = 2000},
-            new VanillaEventEntry { Name = VanillaEventLockItem.霜月, UnlockTimeSec = 3000}
-        };
-
-
+        public List<VanillaEventEntry> VanillaEventEntryList { get; set; }
 
         [DefaultValue(true)]
-        public bool ShowMention = true;
+        public bool ShowMention { get; set; } = true;
 
-        // 配置首次加载时调用
+        // 构造函数设置默认值
+        public ProgressLockConfig()
+        {
+            VanillaBossEntryList = new List<VanillaBossEntry>
+            {
+                new VanillaBossEntry { Name = VanillaLockItem.史莱姆王, UnlockTimeSec = 1000 },
+                new VanillaBossEntry { Name = VanillaLockItem.世界吞噬者, UnlockTimeSec = 2000 },
+                new VanillaBossEntry { Name = VanillaLockItem.血肉墙, UnlockTimeSec = 3000 }
+            };
+
+            CalamityBossEntryList = new List<CalamityBossEntry>
+            {
+                new CalamityBossEntry { Name = CalamityLockItem.荒漠灾虫, UnlockTimeSec = 1000 },
+                new CalamityBossEntry { Name = CalamityLockItem.菌生蟹, UnlockTimeSec = 2000 },
+                new CalamityBossEntry { Name = CalamityLockItem.史莱姆之神, UnlockTimeSec = 3000 }
+            };
+
+            VanillaEventEntryList = new List<VanillaEventEntry>
+            {
+                new VanillaEventEntry { Name = VanillaEventLockItem.哥布林军队, UnlockTimeSec = 1000 },
+                new VanillaEventEntry { Name = VanillaEventLockItem.日食, UnlockTimeSec = 2000 },
+                new VanillaEventEntry { Name = VanillaEventLockItem.霜月, UnlockTimeSec = 3000 }
+            };
+        }
+
         public override void OnLoaded()
         {
             Instance = this;
         }
 
-        // 配置值更改后调用（包括首次加载和玩家修改后）
         public override void OnChanged()
         {
-            
-       
             if (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.Server)
             {
-                // 单人或服务器端才显示消息
                 Main.NewText("进度锁配置已更新！", 100, 255, 100);
             }
+            Main.NewText($"配置更新 - Boss数量: {VanillaBossEntryList?.Count ?? 0}", 100, 255, 100);
+            Main.NewText($"FirstTime: {FirstTime}", 100, 255, 100);
+            Main.NewText($"ShowMention: {ShowMention}", 100, 255, 100);
         }
     }
 
     public class VanillaBossEntry
     {
-        //public LockType LockType;
         [CustomModConfigItem(typeof(ScrollableEnumElement))]
-        public VanillaLockItem Name;
-
+        public VanillaLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        [DefaultValue(50)]
-        public long UnlockTimeSec;
+        
+        public long UnlockTimeSec { get; set; } = 50;
+
+        [JsonIgnore]
         public string UnlockTimeReadable
         {
             get
             {
                 TimeSpan ts = TimeSpan.FromSeconds(UnlockTimeSec);
                 return $"{(int)ts.TotalDays}天 {ts.Hours}时 {ts.Minutes}分 {ts.Seconds}秒";
-
             }
         }
-
 
         public override bool Equals(object obj)
         {
             if (obj is VanillaBossEntry other)
-                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;  // ⭐ 添加这个
+                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;
             return false;
         }
 
-        
         public override int GetHashCode()
         {
-            return (Name, UnlockTimeSec).GetHashCode();  
+            return (Name, UnlockTimeSec).GetHashCode();
         }
     }
 
     public class CalamityBossEntry
     {
-        //public LockType LockType;
         [CustomModConfigItem(typeof(ScrollableEnumElement))]
-        public CalamityLockItem Name;
-
+        public CalamityLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        [DefaultValue(50)]
-        public long UnlockTimeSec;
+        
+        public long UnlockTimeSec { get; set; } = 50;
+
+        [JsonIgnore]
         public string UnlockTimeReadable
         {
             get
             {
                 TimeSpan ts = TimeSpan.FromSeconds(UnlockTimeSec);
                 return $"{(int)ts.TotalDays}d {ts.Hours}h {ts.Minutes}m {ts.Seconds}s";
-
             }
         }
-
 
         public override bool Equals(object obj)
         {
             if (obj is CalamityBossEntry other)
-                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;  
+                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;
             return false;
         }
 
-        
         public override int GetHashCode()
         {
-            return (Name, UnlockTimeSec).GetHashCode(); 
+            return (Name, UnlockTimeSec).GetHashCode();
         }
     }
+
     public class VanillaEventEntry
     {
-        //public LockType LockType;
         [CustomModConfigItem(typeof(ScrollableEnumElement))]
-        public VanillaEventLockItem Name;
-
+        public VanillaEventLockItem Name { get; set; }
 
         [Range(0, 7776000)]
-        [DefaultValue(50)]
-        public long UnlockTimeSec;
+        
+        public long UnlockTimeSec { get; set; } = 50;
+
+        [JsonIgnore]
         public string UnlockTimeReadable
         {
             get
             {
                 TimeSpan ts = TimeSpan.FromSeconds(UnlockTimeSec);
                 return $"{(int)ts.TotalDays}d {ts.Hours}h {ts.Minutes}m {ts.Seconds}s";
-
             }
         }
-
 
         public override bool Equals(object obj)
         {
             if (obj is VanillaEventEntry other)
-                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;  
+                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;
             return false;
         }
 
-        
         public override int GetHashCode()
         {
-            return (Name, UnlockTimeSec).GetHashCode();  
+            return (Name, UnlockTimeSec).GetHashCode();
         }
     }
-    
 
     public enum VanillaLockItem
     {
@@ -198,17 +191,10 @@ namespace ProgressLock
         光之女皇,
         拜月教邪教徒,
         月亮领主
-        
-        
-
-
-
-
     }
 
     public enum CalamityLockItem
     {
-
         荒漠灾虫,
         菌生蟹,
         腐巢意志,
@@ -235,7 +221,6 @@ namespace ProgressLock
         重生之龙犽戎,
         星流巨械,
         至尊女巫灾厄
-
     }
 
     public enum VanillaEventLockItem
@@ -251,7 +236,4 @@ namespace ProgressLock
         霜月,
         日食
     }
-
-
-  
 }

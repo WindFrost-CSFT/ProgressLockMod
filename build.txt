@@ -1,0 +1,3 @@
+﻿displayName = 进度限制
+author = L4z1n3ss
+version = 0.1

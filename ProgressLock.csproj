@@ -12,5 +12,8 @@
 	<ItemGroup>
 	  <AdditionalFiles Remove="Localization\zh-Hans.hjson" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Models\ILockEntry.cs" />
+	</ItemGroup>
 
 </Project>

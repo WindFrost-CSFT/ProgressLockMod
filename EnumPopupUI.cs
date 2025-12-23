@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
 
@@ -18,7 +18,7 @@ public class ScrollableEnumElement : ConfigElement
 
     protected override void SetObject(object value)
     {
-        base.SetObject(value);   
+        base.SetObject(value);
         UpdateHeaderText();      // 只做 UI，同步显示
     }
     public override void OnBind()
@@ -51,6 +51,7 @@ public class ScrollableEnumElement : ConfigElement
         arrow.TextColor = Color.White;
         headerPanel.Append(arrow);
         UpdateHeaderText();
+
     }
     private void TogglePopup(UIMouseEvent evt, UIElement listeningElement)
     {
@@ -71,7 +72,7 @@ public class ScrollableEnumElement : ConfigElement
         {
             ClosePopup();
         }
-        
+
         var enumType = MemberInfo.Type;
         var enumValues = Enum.GetValues(enumType);
 
@@ -113,7 +114,7 @@ public class ScrollableEnumElement : ConfigElement
     {
         if (value != null)
         {
-            SetObject(value);   
+            SetObject(value);
             ClosePopup();
         }
 
@@ -124,19 +125,42 @@ public class ScrollableEnumElement : ConfigElement
         return MemberInfo?.GetValue(Item);
     }
 
+    // 记得添加这个引用
+
     private void UpdateHeaderText()
     {
-        
+        if (headerText == null || headerPanel == null) return;
 
+        // 1. 获取当前文本
         var currentValue = GetValue();
-        if (currentValue != null)
+        string text = currentValue?.ToString() ?? "点击选择...";
+
+        // 2. 获取面板宽度并处理保底值
+        float currentWidth = headerPanel.GetInnerDimensions().Width;
+
+        // 如果还没加载出来(<=0)，使用预估值 150
+        if (currentWidth <= 0)
         {
-            headerText.SetText(currentValue.ToString());
+            currentWidth = 150f;
         }
-        else
+
+        // 3. 计算可用宽度（减去右侧图标的空间，比如 35 像素）
+        // 使用 Math.Max 确保宽度永远不会是负数或 0
+        float availableWidth = Math.Max(10f, currentWidth - 35f);
+
+        // 4. 测量文字并计算缩放
+        Vector2 stringSize = FontAssets.MouseText.Value.MeasureString(text);
+        float textWidth = stringSize.X;
+
+        float scale = 1f;
+        if (textWidth > availableWidth)
         {
-            headerText.SetText("点击选择...");
+            // 计算缩放，并确保缩放比例不小于 0.1f（防止文字缩成一个点）
+            scale = Math.Max(0.1f, availableWidth / textWidth);
         }
+
+        // 5. 应用文本和缩放
+        headerText.SetText(text, scale, false);
     }
 }
 
@@ -146,7 +170,7 @@ public class EnumPopupWindow : UIPanel
     private UIList list;
     private UIScrollbar scrollbar;
     internal ScrollableEnumElement parent;
-    
+
 
     public EnumPopupWindow(ScrollableEnumElement parent, Array enumValues)
     {
@@ -199,7 +223,7 @@ public class EnumPopupWindow : UIPanel
     {
         base.Update(gameTime);
 
-        
+
 
         if (Main.mouseLeft && Main.mouseLeftRelease)
         {

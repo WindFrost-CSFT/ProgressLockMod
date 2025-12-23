@@ -2,16 +2,6 @@ Configs: {
 	ProgressLockConfig: {
 		DisplayName: Progress Lock Config
 
-		FirstTime: {
-			Label: First Start Time
-			Tooltip: Format: yyyy-MM-dd HH:mm:ss
-		}
-
-		ShowMention: {
-			Label: Show Mention
-			Tooltip: Show message in chat
-		}
-
 		VanillaBossEntryList: {
 			Label: Vanilla Boss Entry List
 			Tooltip: ""
@@ -26,9 +16,48 @@ Configs: {
 			Label: Vanilla Event Entry List
 			Tooltip: ""
 		}
+
+		ShowMention: {
+			Label: Show Mention
+			Tooltip: ""
+		}
+
+		FirstTime: {
+			Label: First Time
+			Tooltip: ""
+		}
 	}
 
-	LockItemType: {
+	VanillaBossEntry: {
+		Tooltip: ""
+
+		Name: {
+			Label: Name
+			Tooltip: ""
+		}
+
+		BossEnumName: {
+			Label: Boss Enum Name
+			Tooltip: ""
+		}
+
+		UnlockTimeSec: {
+			Label: Unlock Time Sec
+			Tooltip: ""
+		}
+
+		UnlockTimeReadable: {
+			Label: Unlock Time Readable
+			Tooltip: ""
+		}
+
+		IsManuallyLocked: {
+			Label: Is Manually Locked
+			Tooltip: ""
+		}
+	}
+
+	VanillaBoss: {
 		Tooltip: ""
 
 		KingSlime: {
@@ -37,17 +66,17 @@ Configs: {
 		}
 
 		EyeOfCthulhu: {
-			Label: Eye of Cthulhu
+			Label: Eye Of Cthulhu
 			Tooltip: ""
 		}
 
 		BrainOfCthulhu: {
-			Label: Brain of Cthulhu
+			Label: Brain Of Cthulhu
 			Tooltip: ""
 		}
 
 		EaterOfWorlds: {
-			Label: Eater of Worlds
+			Label: Eater Of Worlds
 			Tooltip: ""
 		}
 
@@ -62,12 +91,12 @@ Configs: {
 		}
 
 		WallOfFlesh: {
-			Label: Wall of Flesh
+			Label: Wall Of Flesh
 			Tooltip: ""
 		}
 
-		TheDestroyer: {
-			Label: The Destroyer
+		SkeletronPrime: {
+			Label: Skeletron Prime
 			Tooltip: ""
 		}
 
@@ -76,8 +105,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		SkeletronPrime: {
-			Label: Skeletron Prime
+		TheDestroyer: {
+			Label: The Destroyer
 			Tooltip: ""
 		}
 
@@ -102,7 +131,7 @@ Configs: {
 		}
 
 		EmpressOfLight: {
-			Label: Empress of Light
+			Label: Empress Of Light
 			Tooltip: ""
 		}
 
@@ -115,6 +144,39 @@ Configs: {
 			Label: Moon Lord
 			Tooltip: ""
 		}
+	}
+
+	CalamityBossEntry: {
+		Tooltip: ""
+
+		Name: {
+			Label: Name
+			Tooltip: ""
+		}
+
+		BossEnumName: {
+			Label: Boss Enum Name
+			Tooltip: ""
+		}
+
+		UnlockTimeSec: {
+			Label: Unlock Time Sec
+			Tooltip: ""
+		}
+
+		UnlockTimeReadable: {
+			Label: Unlock Time Readable
+			Tooltip: ""
+		}
+
+		IsManuallyLocked: {
+			Label: Is Manually Locked
+			Tooltip: ""
+		}
+	}
+
+	CalamityBoss: {
+		Tooltip: ""
 
 		DesertScourge: {
 			Label: Desert Scourge
@@ -123,11 +185,6 @@ Configs: {
 
 		Crabulon: {
 			Label: Crabulon
-			Tooltip: ""
-		}
-
-		SlimeGod: {
-			Label: Slime God
 			Tooltip: ""
 		}
 
@@ -141,6 +198,11 @@ Configs: {
 			Tooltip: ""
 		}
 
+		TheSlimeGod: {
+			Label: The Slime God
+			Tooltip: ""
+		}
+
 		AquaticScourge: {
 			Label: Aquatic Scourge
 			Tooltip: ""
@@ -151,13 +213,18 @@ Configs: {
 			Tooltip: ""
 		}
 
-		Calamitas: {
-			Label: Calamitas
+		Cryogen: {
+			Label: Cryogen
 			Tooltip: ""
 		}
 
-		Leviathan: {
-			Label: Leviathan
+		CalamitasClone: {
+			Label: Calamitas Clone
+			Tooltip: ""
+		}
+
+		LeviathanAndAnahita: {
+			Label: Leviathan And Anahita
 			Tooltip: ""
 		}
 
@@ -167,7 +234,7 @@ Configs: {
 		}
 
 		ThePlaguebringerGoliath: {
-			Label: Plaguebringer Goliath
+			Label: The Plaguebringer Goliath
 			Tooltip: ""
 		}
 
@@ -181,43 +248,18 @@ Configs: {
 			Tooltip: ""
 		}
 
-		GoblinArmy: {
-			Label: Goblin Army
+		ProfanedGuardians: {
+			Label: Profaned Guardians
 			Tooltip: ""
 		}
 
-		PirateInvasion: {
-			Label: Pirate Invasion
+		Dragonfolly: {
+			Label: Dragonfolly
 			Tooltip: ""
 		}
 
-		PumpkinMoon: {
-			Label: Pumpkin Moon
-			Tooltip: ""
-		}
-
-		FrostMoon: {
-			Label: Frost Moon
-			Tooltip: ""
-		}
-
-		MartianMadness: {
-			Label: Martian Madness
-			Tooltip: ""
-		}
-
-		BloodMoon: {
-			Label: Blood Moon
-			Tooltip: ""
-		}
-
-		SolarEclipse: {
-			Label: Solar Eclipse
-			Tooltip: ""
-		}
-
-		Providence: {
-			Label: Providence, the Profaned Goddess
+		ProvidenceTheProfanedGoddess: {
+			Label: Providence The Profaned Goddess
 			Tooltip: ""
 		}
 
@@ -231,8 +273,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		Signus: {
-			Label: Signus, Envoy of the Devourer
+		SignusEnvoyOfTheDevourer: {
+			Label: Signus Envoy Of The Devourer
 			Tooltip: ""
 		}
 
@@ -241,18 +283,18 @@ Configs: {
 			Tooltip: ""
 		}
 
-		OldDuke: {
-			Label: Old Duke
+		TheOldDuke: {
+			Label: The Old Duke
 			Tooltip: ""
 		}
 
-		DevourerOfGods: {
-			Label: Devourer of Gods
+		TheDevourerOfGods: {
+			Label: The Devourer Of Gods
 			Tooltip: ""
 		}
 
-		Yharon: {
-			Label: Yharon, Dragon of Rebirth
+		YharonDragonOfRebirth: {
+			Label: Yharon Dragon Of Rebirth
 			Tooltip: ""
 		}
 
@@ -261,46 +303,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		SupremeCalamitas: {
-			Label: Supreme Calamitas
-			Tooltip: ""
-		}
-	}
-
-	VanillaBossEntry: {
-		Tooltip: ""
-
-		Name: {
-			Label: Name
-			Tooltip: ""
-		}
-
-		UnlockTimeSec: {
-			Label: Unlock Time (Seconds)
-			Tooltip: ""
-		}
-
-		UnlockTimeReadable: {
-			Label: Unlock Time (Readable)
-			Tooltip: ""
-		}
-	}
-
-	CalamityBossEntry: {
-		Tooltip: ""
-
-		Name: {
-			Label: Name
-			Tooltip: ""
-		}
-
-		UnlockTimeSec: {
-			Label: Unlock Time (Seconds)
-			Tooltip: ""
-		}
-
-		UnlockTimeReadable: {
-			Label: Unlock Time (Readable)
+		SupremeWitchCalamitas: {
+			Label: Supreme Witch Calamitas
 			Tooltip: ""
 		}
 	}
@@ -313,293 +317,78 @@ Configs: {
 			Tooltip: ""
 		}
 
+		EventEnumName: {
+			Label: Event Enum Name
+			Tooltip: ""
+		}
+
 		UnlockTimeSec: {
-			Label: Unlock Time (Seconds)
+			Label: Unlock Time Sec
 			Tooltip: ""
 		}
 
 		UnlockTimeReadable: {
-			Label: Unlock Time (Readable)
+			Label: Unlock Time Readable
+			Tooltip: ""
+		}
+
+		IsManuallyLocked: {
+			Label: Is Manually Locked
 			Tooltip: ""
 		}
 	}
 
-	VanillaEventLockItem: {
-		日食: {
-			Tooltip: ""
-			Label: 日食
-		}
-
-		霜月: {
-			Tooltip: ""
-			Label: 霜月
-		}
-
-		月亮事件: {
-			Tooltip: ""
-			Label: 月亮事件
-		}
-
-		火星暴乱: {
-			Tooltip: ""
-			Label: 火星暴乱
-		}
-
-		雪人军团: {
-			Tooltip: ""
-			Label: 雪人军团
-		}
-
-		南瓜月: {
-			Tooltip: ""
-			Label: 南瓜月
-		}
-
-		海盗入侵: {
-			Tooltip: ""
-			Label: 海盗入侵
-		}
-
-		撒旦军队: {
-			Tooltip: ""
-			Label: 撒旦军队
-		}
-
-		血月: {
-			Tooltip: ""
-			Label: 血月
-		}
-
-		哥布林军队: {
-			Tooltip: ""
-			Label: 哥布林军队
-		}
-
+	VanillaEvent: {
 		Tooltip: ""
-	}
 
-	CalamityLockItem: {
-		至尊女巫灾厄: {
+		GoblinArmy: {
+			Label: Goblin Army
 			Tooltip: ""
-			Label: 至尊女巫灾厄
 		}
 
-		星流巨械: {
+		BloodMoon: {
+			Label: Blood Moon
 			Tooltip: ""
-			Label: 星流巨械
 		}
 
-		重生之龙犽戎: {
+		ArmyOfDarkness: {
+			Label: Army Of Darkness
 			Tooltip: ""
-			Label: 重生之龙犽戎
 		}
 
-		神明吞噬者: {
+		PirateInvasion: {
+			Label: Pirate Invasion
 			Tooltip: ""
-			Label: 神明吞噬者
 		}
 
-		硫海遗爵: {
+		PumpkinMoon: {
+			Label: Pumpkin Moon
 			Tooltip: ""
-			Label: 硫海遗爵
 		}
 
-		噬魂幽花: {
+		FrostLegion: {
+			Label: Frost Legion
 			Tooltip: ""
-			Label: 噬魂幽花
 		}
 
-		神之使徒西格纳斯: {
+		MartianMadness: {
+			Label: Martian Madness
 			Tooltip: ""
-			Label: 神之使徒西格纳斯
 		}
 
-		无尽虚空: {
+		LunarEvents: {
+			Label: Lunar Events
 			Tooltip: ""
-			Label: 无尽虚空
 		}
 
-		风暴编织者: {
+		FrostMoon: {
+			Label: Frost Moon
 			Tooltip: ""
-			Label: 风暴编织者
 		}
 
-		亵渎天神普罗维登斯: {
+		SolarEclipse: {
+			Label: Solar Eclipse
 			Tooltip: ""
-			Label: 亵渎天神普罗维登斯
 		}
-
-		痴愚金龙: {
-			Tooltip: ""
-			Label: 痴愚金龙
-		}
-
-		亵渎守卫: {
-			Tooltip: ""
-			Label: 亵渎守卫
-		}
-
-		星神游龙: {
-			Tooltip: ""
-			Label: 星神游龙
-		}
-
-		毁灭魔像: {
-			Tooltip: ""
-			Label: 毁灭魔像
-		}
-
-		瘟疫使者歌莉娅: {
-			Tooltip: ""
-			Label: 瘟疫使者歌莉娅
-		}
-
-		白金星舰: {
-			Tooltip: ""
-			Label: 白金星舰
-		}
-
-		利维坦和阿娜希塔: {
-			Tooltip: ""
-			Label: 利维坦和阿娜希塔
-		}
-
-		灾厄之影: {
-			Tooltip: ""
-			Label: 灾厄之影
-		}
-
-		极地之灵: {
-			Tooltip: ""
-			Label: 极地之灵
-		}
-
-		硫磺火元素: {
-			Tooltip: ""
-			Label: 硫磺火元素
-		}
-
-		渊海灾虫: {
-			Tooltip: ""
-			Label: 渊海灾虫
-		}
-
-		史莱姆之神: {
-			Tooltip: ""
-			Label: 史莱姆之神
-		}
-
-		血肉宿主: {
-			Tooltip: ""
-			Label: 血肉宿主
-		}
-
-		腐巢意志: {
-			Tooltip: ""
-			Label: 腐巢意志
-		}
-
-		菌生蟹: {
-			Tooltip: ""
-			Label: 菌生蟹
-		}
-
-		荒漠灾虫: {
-			Tooltip: ""
-			Label: 荒漠灾虫
-		}
-
-		Tooltip: ""
-	}
-
-	VanillaLockItem: {
-		月亮领主: {
-			Tooltip: ""
-			Label: 月亮领主
-		}
-
-		拜月教邪教徒: {
-			Tooltip: ""
-			Label: 拜月教邪教徒
-		}
-
-		光之女皇: {
-			Tooltip: ""
-			Label: 光之女皇
-		}
-
-		猪鲨公爵: {
-			Tooltip: ""
-			Label: 猪鲨公爵
-		}
-
-		石巨人: {
-			Tooltip: ""
-			Label: 石巨人
-		}
-
-		世纪之花: {
-			Tooltip: ""
-			Label: 世纪之花
-		}
-
-		史莱姆皇后: {
-			Tooltip: ""
-			Label: 史莱姆皇后
-		}
-
-		毁灭者: {
-			Tooltip: ""
-			Label: 毁灭者
-		}
-
-		双子魔眼: {
-			Tooltip: ""
-			Label: 双子魔眼
-		}
-
-		机械骷髅王: {
-			Tooltip: ""
-			Label: 机械骷髅王
-		}
-
-		血肉墙: {
-			Tooltip: ""
-			Label: 血肉墙
-		}
-
-		蜂王: {
-			Tooltip: ""
-			Label: 蜂王
-		}
-
-		骷髅王: {
-			Tooltip: ""
-			Label: 骷髅王
-		}
-
-		世界吞噬者: {
-			Tooltip: ""
-			Label: 世界吞噬者
-		}
-
-		克苏鲁之脑: {
-			Tooltip: ""
-			Label: 克苏鲁之脑
-		}
-
-		克苏鲁之眼: {
-			Tooltip: ""
-			Label: 克苏鲁之眼
-		}
-
-		史莱姆王: {
-			Tooltip: ""
-			Label: 史莱姆王
-		}
-
-		Tooltip: ""
 	}
 }
-
-DisplayName: ProgressLock

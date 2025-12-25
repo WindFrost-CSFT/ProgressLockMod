@@ -12,12 +12,12 @@ namespace ProgressLock.Models
     {
         // 标签打在这里，而不是打在 List 上
         [CustomModConfigItem(typeof(NPCDefinitionFilterElement))]
-        public NPCDefinition Boss;
+        public NPCDefinition Definition;
 
-        public override string ToString() => Boss.IsUnloaded ? "未选中" : Boss.Name;
+        
         public BossWrapper(string mod, string name)
         {
-            Boss = new NPCDefinition(mod, name);
+            Definition = new NPCDefinition(mod, name);
         }
     }
 

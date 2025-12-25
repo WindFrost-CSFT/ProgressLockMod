@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using ProgressLock.Enums;
+using ProgressLock.Models;
 using ProgressLock.Models.Entries;
 using System;
 using System.Collections;
@@ -47,10 +48,10 @@ namespace ProgressLock
         {
             BossEntries = new List<BossEntry>
             {
-                new BossEntry { DefinitionList = new List<NPCDefinition>{ new NPCDefinition("Terraria", "KingSlime")}, UnlockTimeSec = 5000, IsManuallyLocked = false },
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("Terraria", "EaterofWorldsHead")}, UnlockTimeSec = 10000, IsManuallyLocked = false },
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 7000 , IsManuallyLocked = false},
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 12000 , IsManuallyLocked = false },
+                new BossEntry { DefinitionList = new List<BossWrapper>{ new BossWrapper("Terraria", "KingSlime")}, UnlockTimeSec = 5000, IsManuallyLocked = false },
+                new BossEntry { DefinitionList = new List<BossWrapper>{new ("Terraria", "EaterofWorldsHead")}, UnlockTimeSec = 10000, IsManuallyLocked = false },
+                new BossEntry { DefinitionList = new List<BossWrapper>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 7000 , IsManuallyLocked = false},
+                new BossEntry { DefinitionList = new List<BossWrapper>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 12000 , IsManuallyLocked = false },
             };
             EventEntries = new List<EventEntry>
             {

@@ -38,9 +38,9 @@ namespace ProgressLock
                             case LockStatus.NotTimeYet:
                                 foreach (var entry in ProgressLock.allBossEntries)
                                 {
-                                    foreach(var bossWrapper in entry.DefinitionList)
+                                    foreach(var def in entry.DefinitionList)
                                     {
-                                        if (ContentSamples.NpcsByNetId[bossWrapper.Definition.Type] == npc)
+                                        if (ContentSamples.NpcsByNetId[def.Type] == npc)
                                         {
                                             DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
                                             Main.NewText($"Boss [{Lang.GetNPCNameValue(npc.type)}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);

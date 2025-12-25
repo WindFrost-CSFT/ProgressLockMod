@@ -15,6 +15,7 @@ namespace ProgressLock.UI
                     let npc = ContentSamples.NpcsByNetId[elem.Definition.Type]
                     where elem.Definition.Type == 0
                     || npc.boss
+                    || NPCID.Sets.BossBestiaryPriority[elem.Definition.Type] > 0
                     select elem)];
     }
 }

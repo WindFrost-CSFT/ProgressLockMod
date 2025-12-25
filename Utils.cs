@@ -207,20 +207,20 @@ namespace ProgressLock
                 DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
                 if (entry.IsManuallyLocked)
                 {
-                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Definition.Type)}: {GetMsg("ManuallyLocked")}");
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: {GetMsg("ManuallyLocked")}");
                     entryIndex++;
                     continue;
                 }
                 if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
                 {
                     //要本地化
-                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Definition.Type)}: {GetMsg("Unlocked")}");
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: {GetMsg("Unlocked")}");
                     entryIndex++;
                     continue;
                 }
                 else
                 {
-                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Definition.Type)}: " + $"{GetMsg("UnlockCountdown", FormatTimeSpan((unlockDate - DateTime.Now)), unlockDate.ToString("MM dd HH:mm:ss"))}");
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: " + $"{GetMsg("UnlockCountdown", FormatTimeSpan((unlockDate - DateTime.Now)), unlockDate.ToString("MM dd HH:mm:ss"))}");
                     entryIndex++;
                     continue;
                 }
@@ -538,11 +538,11 @@ namespace ProgressLock
 
                 // 2. 检查定义列表 (DefinitionList) 里的 NPC 名字
                 bool matchNPC = false;
-                foreach (var bossWrapper in entry.DefinitionList)
+                foreach (var def in entry.DefinitionList)
                 {
-                    string bossName = Lang.GetNPCNameValue(bossWrapper.Definition.Type);
+                    string bossName = Lang.GetNPCNameValue(def.Type);
                     // 如果本地化名字匹配，或者内部 ID 名匹配
-                    if (bossName == name || bossWrapper.Definition.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    if (bossName == name || def.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                     {
                         matchNPC = true;
                         break;
@@ -599,8 +599,8 @@ namespace ProgressLock
 
             foreach (var entry in ProgressLock.allBossEntries)
             {
-                foreach(var bossWrapper in entry.DefinitionList){
-                    if (ContentSamples.NpcsByNetId[bossWrapper.Definition.Type] == npc)
+                foreach(var def in entry.DefinitionList){
+                    if (ContentSamples.NpcsByNetId[def.Type] == npc)
                     {
 
                         // 根据时间和手动锁定判断状态

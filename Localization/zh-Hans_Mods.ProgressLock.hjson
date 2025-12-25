@@ -129,15 +129,6 @@ Configs: {
 			// Tooltip: ""
 		}
 	}
-
-	BossWrapper: {
-		// Tooltip: ""
-
-		Definition: {
-			// Label: Definition
-			// Tooltip: ""
-		}
-	}
 }
 
 ProgressInfo: {

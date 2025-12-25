@@ -10,9 +10,8 @@ namespace ProgressLock.Models.Entries
     public class BossEntry
     {
 
-        public List<BossWrapper> DefinitionList = new List<BossWrapper>{
-            new BossWrapper("Terraria", "KingSlime") 
-            
+        public List<NPCDefinition> DefinitionList = new List<NPCDefinition>{
+            new NPCDefinition("Terraria", "KingSlime"),
         };
 
         public List<string> Alias  = new List<string>();

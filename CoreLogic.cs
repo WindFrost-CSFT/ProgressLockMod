@@ -18,26 +18,38 @@ namespace ProgressLock
         public override bool PreAI(NPC npc)
         {
             var config = ProgressLockConfig.Config;
-
+            
             if (npc == null || !npc.active) return true;
             if (ProgressLock.allBossEntries == null)
                 return true;
             else
             {
 
-                if (!IsUnlocked(npc, out LockStatus status, out var matchedEntry))
+                if (!IsUnlocked(npc, out LockStatus status))
                 {
-                    matchedEntry.Stop(npc);
+                    StopNPC(npc);
                     if (config.ShowMention)
                     {
                         switch (status)
                         {
                             case LockStatus.IsManuallyLocked:
-                                Main.NewText($"Boss [{matchedEntry.BossEnumName}] 被手动锁定", 255, 100, 100);
+                                Main.NewText($"Boss [{Lang.GetNPCNameValue(npc.type)}] 被手动锁定", 255, 100, 100);
                                 break;
                             case LockStatus.NotTimeYet:
-                                DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(matchedEntry.UnlockTimeSec);
-                                Main.NewText($"Boss [{matchedEntry.BossEnumName}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                                foreach (var entry in ProgressLock.allBossEntries)
+                                {
+                                    foreach(var def in entry.DefinitionList)
+                                    {
+                                        if (ContentSamples.NpcsByNetId[def.Type] == npc)
+                                        {
+                                            DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                                            Main.NewText($"Boss [{Lang.GetNPCNameValue(npc.type)}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                                        }
+                                    }
+                                    
+
+                                }
+                               
                                 break;
                         }
                     }
@@ -66,11 +78,11 @@ namespace ProgressLock
                         switch (status)
                         {
                             case LockStatus.IsManuallyLocked:
-                                Main.NewText($"事件 [{matchedEntry.EventEnumName}] 被手动锁定", 255, 100, 100);
+                                Main.NewText($"事件 [{matchedEntry.Name}] 被手动锁定", 255, 100, 100);
                                 break;
                             case LockStatus.NotTimeYet:
                                 DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(matchedEntry.UnlockTimeSec);
-                                Main.NewText($"事件 [{matchedEntry.EventEnumName}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                                Main.NewText($"事件 [{matchedEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
                                 break;
                         }
                     }

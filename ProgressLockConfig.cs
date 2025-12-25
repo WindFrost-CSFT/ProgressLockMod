@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using ProgressLock.Enums;
 using ProgressLock.Models.Entries;
-using ProgressLock.Models.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace ProgressLock
 {
     public class ProgressLockConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
+        public override ConfigScope Mode => ConfigScope.ClientSide;
 
         public static ProgressLockConfig Config;
 
@@ -30,11 +29,15 @@ namespace ProgressLock
         [DefaultValue("2025-12-19 10:30:10")]
         public string FirstTime { get; set; } = "2025-12-19 10:30:10";
 
-        public List<VanillaBossEntry> VanillaBossEntryList;
+        public List<BossEntry> BossEntries;
 
-        public List<CalamityBossEntry> CalamityBossEntryList;
+        public List<EventEntry> EventEntries;
 
-        public List<VanillaEventEntry> VanillaEventEntryList;
+        // public List<VanillaBossEntry> VanillaBossEntryList;
+
+        // public List<CalamityBossEntry> CalamityBossEntryList;
+
+        // public List<VanillaEventEntry> VanillaEventEntryList;
 
         [DefaultValue(true)]
         public bool ShowMention = true;
@@ -42,26 +45,21 @@ namespace ProgressLock
         // 构造函数设置默认值
         public ProgressLockConfig()
         {
-            VanillaBossEntryList = new List<VanillaBossEntry>
+            BossEntries = new List<BossEntry>
             {
-                new VanillaBossEntry { Name = VanillaBoss.KingSlime, UnlockTimeSec = 1000,  },
-                new VanillaBossEntry { Name = VanillaBoss.EaterOfWorlds, UnlockTimeSec = 2000 },
-                new VanillaBossEntry { Name = VanillaBoss.WallOfFlesh, UnlockTimeSec = 3000 }
+                new BossEntry { DefinitionList = new List<NPCDefinition>{ new NPCDefinition("Terraria", "KingSlime")}, UnlockTimeSec = 5000, IsManuallyLocked = false },
+                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("Terraria", "EaterofWorldsHead")}, UnlockTimeSec = 10000, IsManuallyLocked = false },
+                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 7000 , IsManuallyLocked = false},
+                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 12000 , IsManuallyLocked = false },
+            };
+            EventEntries = new List<EventEntry>
+            {
+                new EventEntry { Name = VanillaEvent.FrostLegion, UnlockTimeSec = 8000, IsManuallyLocked = false },
+                new EventEntry { Name = VanillaEvent.MartianMadness, UnlockTimeSec = 15000, IsManuallyLocked = false  },
+                new EventEntry { Name = VanillaEvent.PumpkinMoon, UnlockTimeSec = 20000, IsManuallyLocked = false  },
             };
 
-            CalamityBossEntryList = new List<CalamityBossEntry>
-            {
-                new CalamityBossEntry { Name = CalamityBoss.DesertScourge, UnlockTimeSec = 1000 },
-                new CalamityBossEntry { Name = CalamityBoss.Crabulon, UnlockTimeSec = 2000 },
-                new CalamityBossEntry { Name = CalamityBoss.TheSlimeGod, UnlockTimeSec = 3000 }
-            };
 
-            VanillaEventEntryList = new List<VanillaEventEntry>
-            {
-                new VanillaEventEntry { Name = VanillaEvent.GoblinArmy, UnlockTimeSec = 1000 },
-                new VanillaEventEntry { Name = VanillaEvent.SolarEclipse, UnlockTimeSec = 2000 },
-                new VanillaEventEntry { Name = VanillaEvent.FrostMoon, UnlockTimeSec = 3000 }
-            };
         }
 
         public override void OnLoaded()
@@ -80,7 +78,8 @@ namespace ProgressLock
             //Main.NewText($"ShowMention: {ShowMention}", 100, 255, 100);
         }
 
-        public IEnumerable<IEntry> GetAllEntries()
+        
+        public IEnumerable<BossEntry> GetAllBossEntries()
         {
             var fields = GetType().GetFields(
                 BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -92,13 +91,35 @@ namespace ProgressLock
 
                 var genericType = field.FieldType.GetGenericArguments()[0];
 
-                if (!typeof(IEntry).IsAssignableFrom(genericType))
+                if (!typeof(BossEntry).IsAssignableFrom(genericType))
                     continue;
 
                 if (field.GetValue(this) is IEnumerable list)
                 {
                     foreach (var entry in list)
-                        yield return (IEntry)entry;
+                        yield return (BossEntry)entry;
+                }
+            }
+        }
+        public IEnumerable<EventEntry> GetAllEventEntries()
+        {
+            var fields = GetType().GetFields(
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            foreach (var field in fields)
+            {
+                if (!field.FieldType.IsGenericType)
+                    continue;
+
+                var genericType = field.FieldType.GetGenericArguments()[0];
+
+                if (!typeof(EventEntry).IsAssignableFrom(genericType))
+                    continue;
+
+                if (field.GetValue(this) is IEnumerable list)
+                {
+                    foreach (var entry in list)
+                        yield return (EventEntry)entry;
                 }
             }
         }

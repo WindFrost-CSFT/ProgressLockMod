@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
-using ProgressLock.Enums;
-using ProgressLock.Models.Interfaces;
+﻿using ProgressLock.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
@@ -11,15 +12,10 @@ using Terraria.ModLoader.Config;
 
 namespace ProgressLock.Models.Entries
 {
-    public class VanillaEventEntry : IEventEntry
+    public class EventEntry
     {
         [CustomModConfigItem(typeof(ScrollableEnumElement))]
         public VanillaEvent Name { get; set; }
-
-        
-        [JsonIgnore]
-        public Enum EventEnumName => Name;
-
 
         [Range(0, 7776000)]
         public long UnlockTimeSec { get; set; } = 500;
@@ -30,7 +26,8 @@ namespace ProgressLock.Models.Entries
             get
             {
                 TimeSpan ts = TimeSpan.FromSeconds(UnlockTimeSec);
-                return $"{(int)ts.TotalDays}d {ts.Hours}h {ts.Minutes}m {ts.Seconds}s";
+                string result = Utils.FormatTimeSpan(ts);
+                return result;
             }
         }
 
@@ -39,7 +36,7 @@ namespace ProgressLock.Models.Entries
 
         public bool Match()
         {
-            return EventEnumName switch
+            return Name switch
             {
                 VanillaEvent.GoblinArmy => Main.invasionType == 1,
                 VanillaEvent.FrostLegion => Main.invasionType == 2,
@@ -64,7 +61,7 @@ namespace ProgressLock.Models.Entries
         /// </summary>
         public void Stop()
         {
-            switch (EventEnumName)
+            switch (Name)
             {
                 case VanillaEvent.GoblinArmy:
                 case VanillaEvent.FrostLegion:
@@ -110,14 +107,14 @@ namespace ProgressLock.Models.Entries
         }
         public override bool Equals(object obj)
         {
-            if (obj is VanillaEventEntry other)
-                return EventEnumName == other.EventEnumName && UnlockTimeSec == other.UnlockTimeSec;
+            if (obj is EventEntry other)
+                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;
             return false;
         }
 
         public override int GetHashCode()
         {
-            return (EventEnumName, UnlockTimeSec).GetHashCode();
+            return (Name, UnlockTimeSec).GetHashCode();
         }
     }
 }

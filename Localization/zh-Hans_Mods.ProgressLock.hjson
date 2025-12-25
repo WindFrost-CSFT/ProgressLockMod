@@ -2,47 +2,66 @@ Configs: {
 	ProgressLockConfig: {
 		DisplayName: 进度限制配置
 
-		VanillaBossEntryList: {
-			Label: 原版Boss列表
+		BossEntries: {
+			Label: Boss 条目
 			Tooltip: ""
 		}
 
-		CalamityBossEntryList: {
-			Label: 灾厄Boss列表
-			Tooltip: ""
-		}
-
-		VanillaEventEntryList: {
-			Label: 原版事件列表
+		EventEntries: {
+			Label: 事件条目
 			Tooltip: ""
 		}
 
 		ShowMention: {
-			Label: 启用消息提醒
-			Tooltip: 在聊天框显示信息
+			Label: 显示提醒消息
+			Tooltip: ""
 		}
 
 		FirstTime: {
-			Label: 首次开服时间
-			Tooltip: 格式: yyyy-mm-dd hh:mm:ss
+			Label: 首次开服事件
+			Tooltip: ""
 		}
 	}
 
-	VanillaBossEntry: {
+	BossEntry: {
 		Tooltip: ""
 
-		Name: {
-			Label: 名称
-			Tooltip: ""
+		DefinitionList: {
+			Label: 关联部位
+			Tooltip: 对于多部位Boss要写全
 		}
 
-		BossEnumName: {
-			// Label: Boss Enum Name
-			// Tooltip: ""
+		Alias: {
+			Label: 别称
+			Tooltip: 用于指令识别的昵称列表。支持添加多个名称，方便快速匹配对应的 Boss。
 		}
 
 		UnlockTimeSec: {
-			Label: 解锁时间(秒)
+			Label: 解锁时长(秒)
+			Tooltip: ""
+		}
+
+		IsManuallyLocked: {
+			Label: 手动锁定
+			Tooltip: ""
+		}
+
+		UnlockTimeReadable: {
+			Label: 时长
+			Tooltip: ""
+		}
+	}
+
+	EventEntry: {
+		Tooltip: ""
+
+		Name: {
+			Label: 事件名称
+			Tooltip: ""
+		}
+
+		UnlockTimeSec: {
+			Label: 解锁时长(秒)
 			Tooltip: ""
 		}
 
@@ -52,289 +71,8 @@ Configs: {
 		}
 
 		IsManuallyLocked: {
-			// Label: Is Manually Locked
-			// Tooltip: ""
-		}
-	}
-
-	VanillaBoss: {
-		// Tooltip: ""
-
-		KingSlime: {
-			// Label: King Slime
-			// Tooltip: ""
-		}
-
-		EyeOfCthulhu: {
-			// Label: Eye Of Cthulhu
-			// Tooltip: ""
-		}
-
-		BrainOfCthulhu: {
-			// Label: Brain Of Cthulhu
-			// Tooltip: ""
-		}
-
-		EaterOfWorlds: {
-			// Label: Eater Of Worlds
-			// Tooltip: ""
-		}
-
-		Skeletron: {
-			// Label: Skeletron
-			// Tooltip: ""
-		}
-
-		QueenBee: {
-			// Label: Queen Bee
-			// Tooltip: ""
-		}
-
-		WallOfFlesh: {
-			// Label: Wall Of Flesh
-			// Tooltip: ""
-		}
-
-		SkeletronPrime: {
-			// Label: Skeletron Prime
-			// Tooltip: ""
-		}
-
-		TheTwins: {
-			// Label: The Twins
-			// Tooltip: ""
-		}
-
-		TheDestroyer: {
-			// Label: The Destroyer
-			// Tooltip: ""
-		}
-
-		QueenSlime: {
-			// Label: Queen Slime
-			// Tooltip: ""
-		}
-
-		Plantera: {
-			// Label: Plantera
-			// Tooltip: ""
-		}
-
-		Golem: {
-			// Label: Golem
-			// Tooltip: ""
-		}
-
-		DukeFishron: {
-			// Label: Duke Fishron
-			// Tooltip: ""
-		}
-
-		EmpressOfLight: {
-			// Label: Empress Of Light
-			// Tooltip: ""
-		}
-
-		LunaticCultist: {
-			// Label: Lunatic Cultist
-			// Tooltip: ""
-		}
-
-		MoonLord: {
-			// Label: Moon Lord
-			// Tooltip: ""
-		}
-	}
-
-	CalamityBossEntry: {
-		Tooltip: ""
-
-		Name: {
-			Label: 名称
+			Label: 手动锁定
 			Tooltip: ""
-		}
-
-		BossEnumName: {
-			// Label: Boss Enum Name
-			// Tooltip: ""
-		}
-
-		UnlockTimeSec: {
-			Label: 解锁时间(秒)
-			Tooltip: ""
-		}
-
-		UnlockTimeReadable: {
-			Label: 时长
-			Tooltip: ""
-		}
-
-		IsManuallyLocked: {
-			// Label: Is Manually Locked
-			// Tooltip: ""
-		}
-	}
-
-	CalamityBoss: {
-		// Tooltip: ""
-
-		DesertScourge: {
-			// Label: Desert Scourge
-			// Tooltip: ""
-		}
-
-		Crabulon: {
-			// Label: Crabulon
-			// Tooltip: ""
-		}
-
-		TheHiveMind: {
-			// Label: The Hive Mind
-			// Tooltip: ""
-		}
-
-		ThePerforators: {
-			// Label: The Perforators
-			// Tooltip: ""
-		}
-
-		TheSlimeGod: {
-			// Label: The Slime God
-			// Tooltip: ""
-		}
-
-		AquaticScourge: {
-			// Label: Aquatic Scourge
-			// Tooltip: ""
-		}
-
-		BrimstoneElemental: {
-			// Label: Brimstone Elemental
-			// Tooltip: ""
-		}
-
-		Cryogen: {
-			// Label: Cryogen
-			// Tooltip: ""
-		}
-
-		CalamitasClone: {
-			// Label: Calamitas Clone
-			// Tooltip: ""
-		}
-
-		LeviathanAndAnahita: {
-			// Label: Leviathan And Anahita
-			// Tooltip: ""
-		}
-
-		AstrumAureus: {
-			// Label: Astrum Aureus
-			// Tooltip: ""
-		}
-
-		ThePlaguebringerGoliath: {
-			// Label: The Plaguebringer Goliath
-			// Tooltip: ""
-		}
-
-		Ravager: {
-			// Label: Ravager
-			// Tooltip: ""
-		}
-
-		AstrumDeus: {
-			// Label: Astrum Deus
-			// Tooltip: ""
-		}
-
-		ProfanedGuardians: {
-			// Label: Profaned Guardians
-			// Tooltip: ""
-		}
-
-		Dragonfolly: {
-			// Label: Dragonfolly
-			// Tooltip: ""
-		}
-
-		ProvidenceTheProfanedGoddess: {
-			// Label: Providence The Profaned Goddess
-			// Tooltip: ""
-		}
-
-		StormWeaver: {
-			// Label: Storm Weaver
-			// Tooltip: ""
-		}
-
-		CeaselessVoid: {
-			// Label: Ceaseless Void
-			// Tooltip: ""
-		}
-
-		SignusEnvoyOfTheDevourer: {
-			// Label: Signus Envoy Of The Devourer
-			// Tooltip: ""
-		}
-
-		Polterghast: {
-			// Label: Polterghast
-			// Tooltip: ""
-		}
-
-		TheOldDuke: {
-			// Label: The Old Duke
-			// Tooltip: ""
-		}
-
-		TheDevourerOfGods: {
-			// Label: The Devourer Of Gods
-			// Tooltip: ""
-		}
-
-		YharonDragonOfRebirth: {
-			// Label: Yharon Dragon Of Rebirth
-			// Tooltip: ""
-		}
-
-		ExoMechs: {
-			// Label: Exo Mechs
-			// Tooltip: ""
-		}
-
-		SupremeWitchCalamitas: {
-			// Label: Supreme Witch Calamitas
-			// Tooltip: ""
-		}
-	}
-
-	VanillaEventEntry: {
-		Tooltip: ""
-
-		Name: {
-			Label: 名称
-			Tooltip: ""
-		}
-
-		EventEnumName: {
-			// Label: Event Enum Name
-			// Tooltip: ""
-		}
-
-		UnlockTimeSec: {
-			Label: 解锁时间(秒)
-			Tooltip: ""
-		}
-
-		UnlockTimeReadable: {
-			Label: 时长
-			Tooltip: ""
-		}
-
-		IsManuallyLocked: {
-			// Label: Is Manually Locked
-			// Tooltip: ""
 		}
 	}
 
@@ -342,53 +80,63 @@ Configs: {
 		// Tooltip: ""
 
 		GoblinArmy: {
-			// Label: Goblin Army
+			Label: 哥布林军队
 			// Tooltip: ""
 		}
 
 		BloodMoon: {
-			// Label: Blood Moon
+			Label: 血月
 			// Tooltip: ""
 		}
 
 		ArmyOfDarkness: {
-			// Label: Army Of Darkness
+			Label: 撒旦军队
 			// Tooltip: ""
 		}
 
 		PirateInvasion: {
-			// Label: Pirate Invasion
+			Label: 海盗入侵
 			// Tooltip: ""
 		}
 
 		PumpkinMoon: {
-			// Label: Pumpkin Moon
+			Label: 南瓜月
 			// Tooltip: ""
 		}
 
 		FrostLegion: {
-			// Label: Frost Legion
+			Label: 雪人军团
 			// Tooltip: ""
 		}
 
 		MartianMadness: {
-			// Label: Martian Madness
+			Label: 火星暴乱
 			// Tooltip: ""
 		}
 
 		LunarEvents: {
-			// Label: Lunar Events
+			Label: 月亮事件
 			// Tooltip: ""
 		}
 
 		FrostMoon: {
-			// Label: Frost Moon
+			Label: 霜月
 			// Tooltip: ""
 		}
 
 		SolarEclipse: {
-			// Label: Solar Eclipse
+			Label: 日食
 			// Tooltip: ""
 		}
 	}
+}
+
+ProgressInfo: {
+	BossHeader: ===== Boss进度列表 =====
+	EventHeadr: ===== 事件进度列表 =====
+	FirstStartTime: 开服时间: {0}
+	AllUnlocked: 已全部解锁!
+	Unlocked: 已解锁
+	ManuallyLocked: 已被手动上锁
+	UnlockCountdown: "{0} 后解锁 ({1})"
 }

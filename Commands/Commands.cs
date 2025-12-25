@@ -30,27 +30,24 @@ namespace ProgressLock.Commands
             }
             switch (args[0].ToLower())
             {
-                case "原版":
-                case "vaniila":
+                case "boss":
+                case "b":
                 case "1":
+                case "npc":
                     {
-                        caller.Reply(Utils.GetProgressInfo(caller.Player, args[1])); 
+                        caller.Reply(Utils.GetBossProgressInfo(caller.Player, args[0])); 
                     }
                     break;
-                case "灾厄":
-                case   "calamity":
-                case "2":
-                    {
-                        caller.Reply(Utils.GetProgressInfo(caller.Player, args[1]));
-                    }
-                    break;
+              
                 case "事件":
                 case "入侵":
                 case "event":
+                case "vanillaevent":
                 case "invasion":
-                case "3":
+                case "2":
+                case "e":
                     {
-                        caller.Reply(Utils.GetProgressInfo(caller.Player, args[1]));
+                        caller.Reply(Utils.GetEventProgressInfo(caller.Player, args[0]));
                     }
                     break;
                 case "switch":
@@ -63,17 +60,18 @@ namespace ProgressLock.Commands
                             return;
                         }
                         bool? lockStatus;
-                        bool flag = ToggleLock(caller.Player, args[1],out lockStatus);
+                        bool flag = ToggleBossLock(caller.Player, args[1],out lockStatus);
                         if (flag)
                         {
                             if ((bool)lockStatus)
                             {
-                                caller.Reply($"已解锁 {args[1]} 的限制锁！", Color.Green);
+                                caller.Reply($"已将 {args[1]} 的限制锁上锁！", Color.Green);
 
                             }
                             else
                             {
-                                caller.Reply($"已将 {args[1]} 的限制锁上锁！", Color.Green);
+                                caller.Reply($"已解锁 {args[1]} 的限制锁！", Color.Green);
+                                
                             }
                         }
                         else

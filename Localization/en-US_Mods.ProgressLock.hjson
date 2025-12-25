@@ -2,18 +2,13 @@ Configs: {
 	ProgressLockConfig: {
 		DisplayName: Progress Lock Config
 
-		VanillaBossEntryList: {
-			Label: Vanilla Boss Entry List
+		BossEntries: {
+			Label: Boss Entries
 			Tooltip: ""
 		}
 
-		CalamityBossEntryList: {
-			Label: Calamity Boss Entry List
-			Tooltip: ""
-		}
-
-		VanillaEventEntryList: {
-			Label: Vanilla Event Entry List
+		EventEntries: {
+			Label: Event Entries
 			Tooltip: ""
 		}
 
@@ -28,26 +23,21 @@ Configs: {
 		}
 	}
 
-	VanillaBossEntry: {
+	BossEntry: {
 		Tooltip: ""
 
-		Name: {
-			Label: Name
-			Tooltip: ""
+		DefinitionList: {
+			Label: Definition List
+			Tooltip: Add all parts of a multi-segment boss
 		}
 
-		BossEnumName: {
-			Label: Boss Enum Name
-			Tooltip: ""
+		Alias: {
+			Label: Alias
+			Tooltip: A list of nicknames or abbreviations used to identify this boss in commands.
 		}
 
 		UnlockTimeSec: {
-			Label: Unlock Time Sec
-			Tooltip: ""
-		}
-
-		UnlockTimeReadable: {
-			Label: Unlock Time Readable
+			Label: Unlock Time (Second)
 			Tooltip: ""
 		}
 
@@ -55,270 +45,18 @@ Configs: {
 			Label: Is Manually Locked
 			Tooltip: ""
 		}
-	}
-
-	VanillaBoss: {
-		Tooltip: ""
-
-		KingSlime: {
-			Label: King Slime
-			Tooltip: ""
-		}
-
-		EyeOfCthulhu: {
-			Label: Eye Of Cthulhu
-			Tooltip: ""
-		}
-
-		BrainOfCthulhu: {
-			Label: Brain Of Cthulhu
-			Tooltip: ""
-		}
-
-		EaterOfWorlds: {
-			Label: Eater Of Worlds
-			Tooltip: ""
-		}
-
-		Skeletron: {
-			Label: Skeletron
-			Tooltip: ""
-		}
-
-		QueenBee: {
-			Label: Queen Bee
-			Tooltip: ""
-		}
-
-		WallOfFlesh: {
-			Label: Wall Of Flesh
-			Tooltip: ""
-		}
-
-		SkeletronPrime: {
-			Label: Skeletron Prime
-			Tooltip: ""
-		}
-
-		TheTwins: {
-			Label: The Twins
-			Tooltip: ""
-		}
-
-		TheDestroyer: {
-			Label: The Destroyer
-			Tooltip: ""
-		}
-
-		QueenSlime: {
-			Label: Queen Slime
-			Tooltip: ""
-		}
-
-		Plantera: {
-			Label: Plantera
-			Tooltip: ""
-		}
-
-		Golem: {
-			Label: Golem
-			Tooltip: ""
-		}
-
-		DukeFishron: {
-			Label: Duke Fishron
-			Tooltip: ""
-		}
-
-		EmpressOfLight: {
-			Label: Empress Of Light
-			Tooltip: ""
-		}
-
-		LunaticCultist: {
-			Label: Lunatic Cultist
-			Tooltip: ""
-		}
-
-		MoonLord: {
-			Label: Moon Lord
-			Tooltip: ""
-		}
-	}
-
-	CalamityBossEntry: {
-		Tooltip: ""
-
-		Name: {
-			Label: Name
-			Tooltip: ""
-		}
-
-		BossEnumName: {
-			Label: Boss Enum Name
-			Tooltip: ""
-		}
-
-		UnlockTimeSec: {
-			Label: Unlock Time Sec
-			Tooltip: ""
-		}
 
 		UnlockTimeReadable: {
 			Label: Unlock Time Readable
 			Tooltip: ""
 		}
-
-		IsManuallyLocked: {
-			Label: Is Manually Locked
-			Tooltip: ""
-		}
 	}
 
-	CalamityBoss: {
-		Tooltip: ""
-
-		DesertScourge: {
-			Label: Desert Scourge
-			Tooltip: ""
-		}
-
-		Crabulon: {
-			Label: Crabulon
-			Tooltip: ""
-		}
-
-		TheHiveMind: {
-			Label: The Hive Mind
-			Tooltip: ""
-		}
-
-		ThePerforators: {
-			Label: The Perforators
-			Tooltip: ""
-		}
-
-		TheSlimeGod: {
-			Label: The Slime God
-			Tooltip: ""
-		}
-
-		AquaticScourge: {
-			Label: Aquatic Scourge
-			Tooltip: ""
-		}
-
-		BrimstoneElemental: {
-			Label: Brimstone Elemental
-			Tooltip: ""
-		}
-
-		Cryogen: {
-			Label: Cryogen
-			Tooltip: ""
-		}
-
-		CalamitasClone: {
-			Label: Calamitas Clone
-			Tooltip: ""
-		}
-
-		LeviathanAndAnahita: {
-			Label: Leviathan And Anahita
-			Tooltip: ""
-		}
-
-		AstrumAureus: {
-			Label: Astrum Aureus
-			Tooltip: ""
-		}
-
-		ThePlaguebringerGoliath: {
-			Label: The Plaguebringer Goliath
-			Tooltip: ""
-		}
-
-		Ravager: {
-			Label: Ravager
-			Tooltip: ""
-		}
-
-		AstrumDeus: {
-			Label: Astrum Deus
-			Tooltip: ""
-		}
-
-		ProfanedGuardians: {
-			Label: Profaned Guardians
-			Tooltip: ""
-		}
-
-		Dragonfolly: {
-			Label: Dragonfolly
-			Tooltip: ""
-		}
-
-		ProvidenceTheProfanedGoddess: {
-			Label: Providence The Profaned Goddess
-			Tooltip: ""
-		}
-
-		StormWeaver: {
-			Label: Storm Weaver
-			Tooltip: ""
-		}
-
-		CeaselessVoid: {
-			Label: Ceaseless Void
-			Tooltip: ""
-		}
-
-		SignusEnvoyOfTheDevourer: {
-			Label: Signus Envoy Of The Devourer
-			Tooltip: ""
-		}
-
-		Polterghast: {
-			Label: Polterghast
-			Tooltip: ""
-		}
-
-		TheOldDuke: {
-			Label: The Old Duke
-			Tooltip: ""
-		}
-
-		TheDevourerOfGods: {
-			Label: The Devourer Of Gods
-			Tooltip: ""
-		}
-
-		YharonDragonOfRebirth: {
-			Label: Yharon Dragon Of Rebirth
-			Tooltip: ""
-		}
-
-		ExoMechs: {
-			Label: Exo Mechs
-			Tooltip: ""
-		}
-
-		SupremeWitchCalamitas: {
-			Label: Supreme Witch Calamitas
-			Tooltip: ""
-		}
-	}
-
-	VanillaEventEntry: {
+	EventEntry: {
 		Tooltip: ""
 
 		Name: {
 			Label: Name
-			Tooltip: ""
-		}
-
-		EventEnumName: {
-			Label: Event Enum Name
 			Tooltip: ""
 		}
 
@@ -391,4 +129,14 @@ Configs: {
 			Tooltip: ""
 		}
 	}
+}
+
+ProgressInfo: {
+	BossHeader: ===== Boss Progress =====
+	EventHeadr: ===== Event Progress =====
+	FirstStartTime: First Start Time: {0}
+	AllUnlocked: All unlocked!
+	Unlocked: unlocked
+	ManuallyLocked: is manually locked
+	UnlockCountdown: Unlocks in {0} ({1})
 }

@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
 
@@ -16,7 +17,7 @@ public class ScrollableEnumElement : ConfigElement
     //internal static bool popupOpen;
     public static EnumPopupWindow popupWindow;
 
-    protected override void SetObject(object value)
+    public override void SetObject(object value)
     {
         base.SetObject(value);
         UpdateHeaderText();      // 只做 UI，同步显示
@@ -131,35 +132,28 @@ public class ScrollableEnumElement : ConfigElement
     {
         if (headerText == null || headerPanel == null) return;
 
-        // 1. 获取当前文本
         var currentValue = GetValue();
-        string text = currentValue?.ToString() ?? "点击选择...";
+        string text = "点击选择...";
 
-        // 2. 获取面板宽度并处理保底值
+        if (currentValue != null)
+        {
+            // 核心改动：获取本地化键并获取翻译
+            // TML 枚举本地化路径格式通常为: Mods.ModName.Configs.EnumTypeName.EnumMemberName.Label
+            string localizationKey = $"Mods.ProgressLock.Configs.{currentValue.GetType().Name}.{currentValue}.Label";
+            text = Terraria.Localization.Language.GetTextValue(localizationKey);
+
+            // 如果找不到翻译（返回了键本身），则回退到 ToString()
+            if (text == localizationKey)
+                text = currentValue.ToString();
+        }
+
+        // ... 后续计算缩放的代码保持不变 ...
         float currentWidth = headerPanel.GetInnerDimensions().Width;
-
-        // 如果还没加载出来(<=0)，使用预估值 150
-        if (currentWidth <= 0)
-        {
-            currentWidth = 150f;
-        }
-
-        // 3. 计算可用宽度（减去右侧图标的空间，比如 35 像素）
-        // 使用 Math.Max 确保宽度永远不会是负数或 0
+        if (currentWidth <= 0) currentWidth = 150f;
         float availableWidth = Math.Max(10f, currentWidth - 35f);
-
-        // 4. 测量文字并计算缩放
         Vector2 stringSize = FontAssets.MouseText.Value.MeasureString(text);
-        float textWidth = stringSize.X;
+        float scale = stringSize.X > availableWidth ? Math.Max(0.1f, availableWidth / stringSize.X) : 1f;
 
-        float scale = 1f;
-        if (textWidth > availableWidth)
-        {
-            // 计算缩放，并确保缩放比例不小于 0.1f（防止文字缩成一个点）
-            scale = Math.Max(0.1f, availableWidth / textWidth);
-        }
-
-        // 5. 应用文本和缩放
         headerText.SetText(text, scale, false);
     }
 }
@@ -262,21 +256,38 @@ public class EnumOptionElement : UIPanel
     {
         this.parent = parent;
         this.value = value;
-        this.displayName = value.ToString();
 
+        // --- 本地化适配 ---
+        string modName = "ProgressLock";
+        string localizationKey = $"Mods.{modName}.Configs.{value.GetType().Name}.{value}.Label";
+        string translatedName = Terraria.Localization.Language.GetTextValue(localizationKey);
+        this.displayName = (translatedName == localizationKey) ? value.ToString() : translatedName;
+
+        // --- 面板基础设置 ---
         Width.Set(0f, 1f);
         Height.Set(28f, 0f);
-        PaddingTop = 5f;
-        PaddingLeft = 10f;
+
+        // 【核心修正 1】 必须调用这个！彻底杀掉 UIPanel 默认的 12px 内边距
+        // 不杀掉这个，VAlign 计算出来的中心点永远是偏的
+        SetPadding(0f);
 
         BackgroundColor = new Color(63, 82, 151) * 0.7f;
         BorderColor = new Color(89, 116, 213) * 0.5f;
 
+        // --- 文字元素设置 ---
+        // 【核心修正 2】 使用非精简版的 UIText 构造函数，或者确保没被缩放干扰
         textElement = new UIText(displayName);
-        textElement.VAlign = 0f;
-        textElement.VAlign = 0f;
-        textElement.Left.Set(0f, 0f);
-        textElement.Top.Set(0f, 0f);
+
+        // 强制左对齐
+        textElement.HAlign = 0f;
+        // 强制垂直居中
+        textElement.VAlign = 0.5f;
+
+        // 【核心修正 3】 放弃 Padding，全用 Left/Top 坐标控制
+        // 如果还是觉得靠上，把下面的 2f 改成 4f 或 5f，直到它下来为止
+        textElement.Left.Set(10f, 0f);
+        textElement.Top.Set(2f, 0f); // 这是一个手动向下的偏移量
+
         Append(textElement);
 
         OnLeftClick += OnClick;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using ProgressLock.Enums;
-using ProgressLock.Models.Interfaces;
+using ProgressLock.Models.Entries;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +11,8 @@ using System.Text;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using tModPorter;
 using static ProgressLock.ProgressLockWorld;
 
 namespace ProgressLock
@@ -164,120 +166,282 @@ namespace ProgressLock
             return sb.ToString().Trim();
         }
         // 修复 CS0472: long 类型的值永不等于 null
-        public static string GetProgressInfo(Player player , string modType)
+        public static string GetBossProgressInfo(Player player , string pageStr)
         {
-            var config = ProgressLockConfig.Config;
+            string GetMsg(string key, params object[] args) => Language.GetTextValue($"Mods.ProgressLock.ProgressInfo.{key}", args);
             StringBuilder sb = new StringBuilder();
-            switch (modType.ToLower())
+
+            sb.AppendLine(GetMsg("BossHeader"));
+            sb.AppendLine(GetMsg("FirstStartTime", ProgressLockConfig.Config.FirstTime.ToString()));
+            var config = ProgressLockConfig.Config;
+
+            if (config.BossEntries == null)
             {
-                case "vanilla":
-                case "原版":
-                    {
-                        //这里要本地化
-                        sb.AppendLine("=== 原版进度列表 ===");
-                        sb.AppendLine($"开服时间: {config.FirstTime}");
-                        if (config.VanillaBossEntryList == null)
-                        {
-                            sb.AppendLine("已全部解锁!");
-                            return sb.ToString();
-                        }
-                        int index = 1;
-                        
-                        
-                        foreach (var entry in config.VanillaBossEntryList)
-                        {
-                            DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
-                            if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
-                            {
-                                //要本地化
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已解锁");
-                                index++;
-                            }
-                            else if (entry.IsManuallyLocked)
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已被手动上锁");
-                                index++;
-                            }
-                            else
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: " + $"- 解锁时间: {Utils.FormatTimeSpan((unlockDate - DateTime.Now))} 后解锁({unlockDate.ToString("MMM dd日 HH时 mm分 ss秒")})");
-                                index++;
-                            }
-                        }
-                        break;
-                    }
-                case "vanillaevent":
-                case "原版事件":
-                    {//这里要本地化
-                        sb.AppendLine("=== 原版事件进度列表 ===");
-                        sb.AppendLine($"开服时间: {config.FirstTime}");
-                        if (config.VanillaBossEntryList == null)
-                        {
-                            sb.AppendLine("已全部解锁!");
-                            return sb.ToString();
-                        }
-                        int index = 1;
-                        
-                        foreach (var entry in config.VanillaEventEntryList)
-                        {
-                            DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
-                            if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
-                            {
-                                //要本地化
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已解锁");
-                                index++;
-                            }
-                            else if (entry.IsManuallyLocked)
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已被手动上锁");
-                                index++;
-                            }
-                            else
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: " + $"- 解锁时间: {Utils.FormatTimeSpan((unlockDate - DateTime.Now))} 后解锁({unlockDate.ToString("MMM dd日 HH时 mm分 ss秒")})");
-                                index++;
-                            }
-                        }
-                        break;
-                    }
-                case "calamity":
-                case "灾厄":
-                    {//这里要本地化
-                        sb.AppendLine("=== 原版进度列表 ===");
-                        sb.AppendLine($"开服时间: {config.FirstTime}");
-                        if (config.VanillaBossEntryList == null)
-                        {
-                            sb.AppendLine("已全部解锁!");
-                            return sb.ToString();
-                        }
-                        int index = 1;
-                        
-                        foreach (var entry in config.CalamityBossEntryList)
-                        {
-                            DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
-                            if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
-                            {
-                                //要本地化
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已解锁");
-                                index++;
-                            }
-                            else if (entry.IsManuallyLocked)
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: 已被手动上锁");
-                                index++;
-                            }
-                            else
-                            {
-                                sb.AppendLine($"[{index}] {entry.Name.ToString()}: " + $"- 解锁时间: {Utils.FormatTimeSpan((unlockDate - DateTime.Now))} 后解锁({unlockDate.ToString("MMM dd日 HH时 mm分 ss秒")})");
-                                index++;
-                            }
-                        }
-                        break;
-                    }
+                sb.AppendLine(GetMsg("AllUnlocked"));
+                return sb.ToString();
+            }
+            
+            int size = 10;
+            int page;
+            int maxPage = config.BossEntries.Count / size + (config.BossEntries.Count % size == 0 ? 0 : 1);
+            int listIndex = 0;
+            int entryIndex = 1;
+            try
+            {
+                page = int.Parse(pageStr);
+            }
+            catch
+            {
+                page = 1;
+            }
+
+            if(page < 1 || page > maxPage)
+                page = 1;
+
+            listIndex = (page - 1) * size;
+            entryIndex = listIndex + 1;
+
+
+            foreach(var entry in config.BossEntries)
+            {
+                DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                if (entry.IsManuallyLocked)
+                {
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: {GetMsg("ManuallyLocked")}");
+                    entryIndex++;
+                    continue;
+                }
+                if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
+                {
+                    //要本地化
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: {GetMsg("Unlocked")}");
+                    entryIndex++;
+                    continue;
+                }
+                else
+                {
+                    sb.AppendLine($"[{entryIndex}] {Lang.GetNPCNameValue(entry.DefinitionList[0].Type)}: " + $"{GetMsg("UnlockCountdown", FormatTimeSpan((unlockDate - DateTime.Now)), unlockDate.ToString("MM dd HH:mm:ss"))}");
+                    entryIndex++;
+                    continue;
+                }
+
+                
+            }
+
+            sb.AppendLine($"===== {page} / {maxPage} =====");
+
+            return sb.ToString();
+
+            // Main.NewText(config.VanillaBossEntryList.Count);
+            /*
+             switch (modType.ToLower())
+             {
+                 case "vanilla":
+                 case "原版":
+                     {
+                         //这里要本地化
+
+                         sb.AppendLine(GetMsg("VanillaHeader"));
+                         sb.AppendLine(GetMsg("FirstStartTime", config.FirstTime.ToString()));
+                         if (config.VanillaBossEntryList == null)
+                         {
+                             sb.AppendLine($"{GetMsg("AllUnlocked")}");
+                             return sb.ToString();
+                         }
+                         int index = 1;
+
+
+                         foreach (var entry in config.VanillaBossEntryList)
+                         {
+                             string entryNameKey = $"Mods.ProgressLock.Configs.{entry.GetType().Name.Replace("Entry", "")}.{entry.Name}.Label";
+                             string translatedName = Language.GetTextValue(entryNameKey);
+                             DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                             if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
+                             {
+                                 //要本地化
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("Unlocked")}");
+                                 index++;
+                             }
+                             else if (entry.IsManuallyLocked)
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("ManuallyLocked")}");
+                                 index++;
+                             }
+                             else
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: " + $"{GetMsg("UnlockCountdown", FormatTimeSpan((unlockDate - DateTime.Now)) , unlockDate.ToString("MMM dd HH:mm:ss"))}");
+                                 index++;
+                             }
+                         }
+                         return sb.ToString();
+                     }
+
+                 case "vanillaevent":
+                 case "原版事件":
+                     {
+                         sb.AppendLine(GetMsg("VanillaEventHeader"));
+                         sb.AppendLine(GetMsg("FirstStartTime", config.FirstTime.ToString()));
+
+                         // 注意：这里原代码检查的是 VanillaBossEntryList，建议改为检查对应的列表
+                         if (config.VanillaEventEntryList == null)
+                         {
+                             sb.AppendLine(GetMsg("AllUnlocked"));
+                             return sb.ToString();
+                         }
+
+                         int index = 1;
+                         foreach (var entry in config.VanillaEventEntryList)
+                         {
+                             // 自动匹配 Mods.ProgressLock.Configs.VanillaEvent.名称.Label
+                             string entryNameKey = $"Mods.ProgressLock.Configs.{entry.GetType().Name.Replace("Entry", "")}.{entry.Name}.Label";
+                             string translatedName = Language.GetTextValue(entryNameKey);
+
+                             DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                             if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("Unlocked")}");
+                             }
+                             else if (entry.IsManuallyLocked)
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("ManuallyLocked")}");
+                             }
+                             else
+                             {
+                                 // 使用统一的倒计时本地化格式
+                                 string countdown = GetMsg("UnlockCountdown", FormatTimeSpan(unlockDate - DateTime.Now), unlockDate.ToString("MMM dd HH:mm:ss"));
+                                 sb.AppendLine($"[{index}] {translatedName}: {countdown}");
+                             }
+                             index++;
+                         }
+                         return sb.ToString();
+                     }
+
+                 case "calamity":
+                 case "灾厄":
+                     {
+                         sb.AppendLine(GetMsg("CalamityHeader"));
+                         sb.AppendLine(GetMsg("FirstStartTime", config.FirstTime.ToString()));
+
+                         if (config.CalamityBossEntryList == null)
+                         {
+                             sb.AppendLine(GetMsg("AllUnlocked"));
+                             return sb.ToString();
+                         }
+
+                         int index = 1;
+                         foreach (var entry in config.CalamityBossEntryList)
+                         {
+                             // 自动匹配 Mods.ProgressLock.Configs.CalamityBoss.名称.Label
+                             string entryNameKey = $"Mods.ProgressLock.Configs.{entry.GetType().Name.Replace("Entry", "")}.{entry.Name}.Label";
+                             string translatedName = Language.GetTextValue(entryNameKey);
+
+                             DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                             if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("Unlocked")}");
+                             }
+                             else if (entry.IsManuallyLocked)
+                             {
+                                 sb.AppendLine($"[{index}] {translatedName}: {GetMsg("ManuallyLocked")}");
+                             }
+                             else
+                             {
+                                 string countdown = GetMsg("UnlockCountdown", FormatTimeSpan(unlockDate - DateTime.Now), unlockDate.ToString("MMM dd HH:mm:ss"));
+                                 sb.AppendLine($"[{index}] {translatedName}: {countdown}");
+                             }
+                             index++;
+                         }
+                         return sb.ToString();
+                     }
+
+
+             } */
+           
+        }
+
+        public static string GetEventProgressInfo(Player player, string pageStr)
+        {
+            string GetMsg(string key, params object[] args) => Language.GetTextValue($"Mods.ProgressLock.ProgressInfo.{key}", args);
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(GetMsg("EventHeader"));
+            sb.AppendLine(GetMsg("FirstStartTime", ProgressLockConfig.Config.FirstTime.ToString()));
+            var config = ProgressLockConfig.Config;
+
+            if (config.EventEntries == null)
+            {
+                sb.AppendLine(GetMsg("AllUnlocked"));
+                return sb.ToString();
+            }
+
+            int size = 10;
+            int page;
+            int maxPage = config.EventEntries.Count / size + (config.EventEntries.Count % size == 0 ? 0 : 1);
+            int listIndex = 0;
+            int entryIndex = 1;
+            try
+            {
+                page = int.Parse(pageStr);
+            }
+            catch
+            {
+                page = 1;
+            }
+
+            if (page < 1 || page > maxPage)
+                page = 1;
+
+            listIndex = (page - 1) * size;
+            entryIndex = listIndex + 1;
+
+
+            foreach (var entry in config.EventEntries)
+            {
+                DateTime unlockDate = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
+                if (entry.IsManuallyLocked)
+                {
+                    sb.AppendLine($"[{entryIndex}] {entry.Name.ToString()}: {GetMsg("ManuallyLocked")}");
+                    entryIndex++;
+                    continue;
+                }
+                if (DateTime.Now >= unlockDate && !entry.IsManuallyLocked)
+                {
+                    //要本地化
+                    sb.AppendLine($"[{entryIndex}] {entry.Name.ToString()}: {GetMsg("Unlocked")}");
+                    entryIndex++;
+                    continue;
+                }
+                else
+                {
+                    sb.AppendLine($"[{entryIndex}] {entry.Name.ToString()}: " + $"{GetMsg("UnlockCountdown", FormatTimeSpan((unlockDate - DateTime.Now)), unlockDate.ToString("MM dd HH:mm:ss"))}");
+                    entryIndex++;
+                    continue;
+                }
 
 
             }
+
+            sb.AppendLine($"===== {page} / {maxPage} =====");
+
             return sb.ToString();
+
+            
+
+        }
+        public static int? GetBossIdByName(string searchName)
+        {
+            for (int i = 0; i < NPCLoader.NPCCount; i++)
+            {
+                // 获取该 NPC 的本地化名称（随语言改变）
+                string npcName = Lang.GetNPCNameValue(i);
+
+                // 忽略大小写
+                if (npcName.Equals(searchName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+            return null;
         }
 
         /*
@@ -352,6 +516,7 @@ namespace ProgressLock
         }
         */
 
+
         /// <summary>
         /// 切换指定 Boss 的锁定状态
         /// </summary>
@@ -359,18 +524,36 @@ namespace ProgressLock
         /// <param name="entryName">Boss 名称</param>
         /// <param name="currentManualLock">输出参数：切换后的手动锁定状态。true=已解锁, false=已锁定, null=未找到</param>
         /// <returns>是否找到并成功切换。true=找到, false=未找到</returns>
-        public static bool ToggleLock(Player player, string entryName, out bool? currentManualLock)
+        /// 
+        public static bool ToggleBossLock(Player player, string name, out bool? currentManualLock)
         {
-           List<IEntry> entries = ProgressLockConfig.Config.GetAllEntries().ToList();
-
-            foreach(var entry in entries)
+           // Main.NewText(1);
+            List<BossEntry> entries = ProgressLockConfig.Config.GetAllBossEntries().ToList();
+            //  Main.NewText(entries.Count);
+            foreach (var entry in entries)
             {
-                if(entryName == entry.Name.ToString())
+                // 1. 检查别名列表 (Alias) 是否包含玩家输入的名字
+                // StringComparison.OrdinalIgnoreCase 可以忽略大小写（比如输入 eoc 匹配 EoC）
+                bool matchAlias = entry.Alias.Any(a => a.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+                // 2. 检查定义列表 (DefinitionList) 里的 NPC 名字
+                bool matchNPC = false;
+                foreach (var def in entry.DefinitionList)
+                {
+                    string bossName = Lang.GetNPCNameValue(def.Type);
+                    // 如果本地化名字匹配，或者内部 ID 名匹配
+                    if (bossName == name || def.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        matchNPC = true;
+                        break;
+                    }
+                }
+
+                // 3. 只要 别名 或 NPC名 有一个对上了，就执行逻辑
+                if (matchAlias || matchNPC)
                 {
                     entry.IsManuallyLocked = !entry.IsManuallyLocked;
-                    
-                    currentManualLock = !entry.IsManuallyLocked;
-
+                    currentManualLock = entry.IsManuallyLocked; // 注意：这里通常应该是等于最新状态
                     return true;
                 }
             }
@@ -410,47 +593,46 @@ namespace ProgressLock
 
 
         //PreAI()内调用，判断 NPC 是否解锁
-        public static bool IsUnlocked(NPC npc, out LockStatus status, out IBossEntry matchedEntry)
+        public static bool IsUnlocked(NPC npc, out LockStatus status)
         {
             status = LockStatus.Unlocked;
-            matchedEntry = null;
 
             foreach (var entry in ProgressLock.allBossEntries)
             {
-                if (entry.Match(npc))
-                {
-                    matchedEntry = entry;
+                foreach(var def in entry.DefinitionList){
+                    if (ContentSamples.NpcsByNetId[def.Type] == npc)
+                    {
 
-                    // 根据时间和手动锁定判断状态
-                    DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Config.FirstTime)
-                                            .AddSeconds(entry.UnlockTimeSec);
+                        // 根据时间和手动锁定判断状态
+                        DateTime unlockTime = DateTime.Parse(ProgressLockConfig.Config.FirstTime)
+                                                .AddSeconds(entry.UnlockTimeSec);
 
-                    if (DateTime.Now >= unlockTime && !entry.IsManuallyLocked)
-                    {
-                        status = LockStatus.Unlocked;
-                        return true;
-                    }
-                    else if (DateTime.Now >= unlockTime && entry.IsManuallyLocked)
-                    {
-                        status = LockStatus.IsManuallyLocked;
-                        return false;
-                    }
-                    else if (DateTime.Now < unlockTime && !entry.IsManuallyLocked)
-                    {
-                        status = LockStatus.NotTimeYet;
-                        return false;
+                        if (DateTime.Now >= unlockTime && !entry.IsManuallyLocked)
+                        {
+                            status = LockStatus.Unlocked;
+                            return true;
+                        }
+                        else if (DateTime.Now >= unlockTime && entry.IsManuallyLocked)
+                        {
+                            status = LockStatus.IsManuallyLocked;
+                            return false;
+                        }
+                        else if (DateTime.Now < unlockTime && !entry.IsManuallyLocked)
+                        {
+                            status = LockStatus.NotTimeYet;
+                            return false;
+                        }
                     }
                 }
             }
 
             // 没匹配到任何 entry
             status = LockStatus.Unlocked;
-            matchedEntry = null;
             return true;
         }
 
         //PreUpdateWorld()内调用，判断 事件 是否解锁
-        public static bool IsUnlocked(out LockStatus status, out IEventEntry matchedEntry)
+        public static bool IsUnlocked(out LockStatus status, out EventEntry matchedEntry)
         {
             status = LockStatus.Unlocked;
             matchedEntry = null;
@@ -488,7 +670,19 @@ namespace ProgressLock
             return true;
         }
 
-        
+        public static void StopNPC(NPC npc)
+        {
+            npc.active = false;
+            NetMessage.SendData(
+            MessageID.SyncNPC,
+            -1, // 所有客户端
+            -1, // 不排除自己
+            null, // 文本参数通常为空
+            npc.whoAmI // 发送哪一个 NPC
+            );
+        }
+
+
 
     }
 }

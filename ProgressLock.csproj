@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -10,10 +10,20 @@
 
 	<!-- References -->
 	<ItemGroup>
-	  <AdditionalFiles Remove="Localization\zh-Hans.hjson" />
+	  <Compile Remove="Enums\VanillaEvent.cs" />
+	  <Compile Remove="Models\ILockEntry.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Remove="Models\ILockEntry.cs" />
+	  <None Remove="Localization\zh-Hans_Mods.ProgressLock.hjson1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Publicize Include="tModLoader" MemberPattern="^Terraria\.ModLoader\.Config\.UI\..*" />
 	</ItemGroup>
 
 </Project>

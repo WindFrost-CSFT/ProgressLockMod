@@ -46,10 +46,10 @@ A progress-control mod that time-locks NPCs and Events to prevent server speedru
 ### 使用示例 | Examples
 
 * `/progress npc 1` — 查看第一页 NPC 进度。
-* `/pl t npc "Eye of Cthulhu"` — 切换克苏鲁之眼的锁定模式。
-* `/pl switch event 哥布林入侵` — 切换哥布林入侵的锁定模式。
+* `/progress t npc "Eye of Cthulhu"` — 切换克苏鲁之眼的锁定模式。
+* `/progress switch event 哥布林入侵` — 切换哥布林入侵的锁定模式。
 
 ---
 
-> **注意 (Note)**: 这是一个服务端模组。
-> This is a Server-Side mod.
+> **注意 (Note)**: 这是一个非强制同步(NoSync)模组。
+> This is a NoSync mod.

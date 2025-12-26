@@ -15,7 +15,7 @@ namespace ProgressLock.Models.Entries
             new NPCDefinition("Terraria", "KingSlime"),
         };
 
-        public List<string> Alias  = new List<string>();
+        public List<string> Alias { get; set; } = new List<string>();
 
 
         [Range(0, 7776000)]

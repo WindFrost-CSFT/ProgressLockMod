@@ -47,12 +47,11 @@ namespace ProgressLock
             {
                 new NpcEntry { DefinitionList = new List<NPCDefinition>{ new NPCDefinition("Terraria", "KingSlime")}, UnlockTimeSec = 50000 },
                 new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("Terraria", "EaterofWorldsHead"), new ("Terraria", "EaterofWorldsBody") , new ("Terraria", "EaterofWorldsTail") }, UnlockTimeSec = 100000 },
-                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 70000 },
-                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 120000 },
+                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod", "SlimeGodCore") } , UnlockTimeSec = 70000 },
             };
             EventEntries = new List<EventEntry>
             {
-                new EventEntry { Name = VanillaEvent.FrostLegion, UnlockTimeSec = 80000,Alias = new List<string>{"军团"}  },
+                new EventEntry { Name = VanillaEvent.FrostLegion, UnlockTimeSec = 80000,Alias = new List<string>{"Legion"}  },
                 new EventEntry { Name = VanillaEvent.MartianMadness, UnlockTimeSec = 150000 },
                 new EventEntry { Name = VanillaEvent.PumpkinMoon, UnlockTimeSec = 200000 },
             };

@@ -1,4 +1,4 @@
 ﻿displayName = Progress Lock
 author = L4z1n3ss
 version = 0.3.3
-side = Server
+side = Both

@@ -30,8 +30,4 @@ A mod that time-locks NPCs and Events to prevent server speedrunning.
 用法 (Usage): /progress toggle <分类/type> <名称/name>
 动作别名 (Action Aliases): toggle, switch, t, 切换
 
-[c/FFA500:注意 (Note):]
-这是一个服务器模组。
-This is a server-side mod.
-
 GitHub: https://github.com/WindFrost-CSFT/ProgressLockMod

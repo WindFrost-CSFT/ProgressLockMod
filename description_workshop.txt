@@ -48,7 +48,5 @@ Full support for Chinese and English.
 别名 (Aliases): toggle, switch, t, 切换
 
 ------------------------------------------------------------
-[b]注意 (Note):[/b] 这是一个服务器模组。
-This is a Server mod (Server-side).
 
 GitHub: [url]https://github.com/WindFrost-CSFT/ProgressLockMod[/url]

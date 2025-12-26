@@ -8,18 +8,18 @@ A progress-control mod that time-locks NPCs and Events to prevent server speedru
 
 ---
 
-### 核心功能 | Features
+### 功能 | Features
 
 * **三种锁定模式 (Three Modes)**
-    * **到点解锁 (Time-based Unlock)**: 遵循预设的时间线。
-    * **手动锁定 (Hard Lock)**: 强制锁定，即使到点也不会解锁。
-    * **手动解锁 (Force Unlock)**: 强制开启，无视时间限制。
-* **指令查询 (Command Search)**: 支持通过指令实时查询限制名单与倒计时。
-* **广泛兼容性 (NPC Compatibility)**: 支持所有 Mod 的 NPC。
-* **事件支持 (Event Support)**: 事件目前仅支持原版 (Vanilla)。
-* **Boss 特殊适配 (Boss Support)**: 支持多部位 Boss 和多体节 Boss 的判定。
-* **别名系统 (Alias System)**: 支持为 Boss 和事件添加自定义别名，简化指令输入。
-
+    * **到点解锁 (Time-based Unlock)**: 遵循预设的时间线。 (Follows the preset schedule.)
+    * **手动锁定 (Hard Lock)**: 强制锁定，即使到点也不会解锁。 (Stays locked even when the time is up.)
+    * **手动解锁 (Force Unlock)**: 强制开启，无视时间限制。 (Instant access, bypassing all time restrictions.)
+* **指令查询 (Command Search)**: 支持通过指令实时查询限制名单与倒计时。 (Check the lock-list and countdowns in real-time via commands.)
+* **广泛兼容性 (NPC Compatibility)**: 支持所有 Mod 的 NPC。 (Compatible with all modded NPCs.)
+* **事件支持 (Event Support)**: 事件目前仅支持原版 (Vanilla)。 (Events currently support Vanilla content only.)
+* **Boss 特殊适配 (Boss Support)**: 支持多部位 Boss 和多体节 Boss 的判定。 (Full support for multi-part and multi-segment Bosses.)
+* **别名系统 (Alias System)**: 支持为 Boss 和事件添加自定义别名，简化指令输入。 (Set custom aliases for Bosses/Events to simplify command input.)
+* **本地化 (Localization)**: 完整支持中文及英文。 (Full support for Chinese and English.)
 ---
 
 ### 指令手册 | Command Manual

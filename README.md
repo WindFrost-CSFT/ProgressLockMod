@@ -3,7 +3,7 @@
 ![Terraria Mod](https://img.shields.io/badge/Terraria-Mod-orange.svg)
 ![TModLoader](https://img.shields.io/badge/TModLoader-1.4.4+-blue.svg)
 
-这是一个能定时解锁 NPC 和事件的 Mod，旨在防止Pro速通服务器。
+这是一个能定时解锁 NPC 和事件的 Mod，防止Pro速通服务器。
 A progress-control mod that time-locks NPCs and Events to prevent server speedrunning.
 
 ---
@@ -50,3 +50,9 @@ A progress-control mod that time-locks NPCs and Events to prevent server speedru
 * `/progress switch event 哥布林军队` — 切换哥布林入侵的锁定模式。
 
 ---
+
+### 注意事项 | Note
+
+> **[ZH]** 这是一个服务器端模组。如果服务器没有鉴权逻辑，请将 `build.txt` 中的 **Side** 设置为 **Server** 或 **NoSync**。
+>
+> **[EN]** This is a server-side mod. If your server lacks authentication logic, please change **Side** to **Server** or **NoSync** in your `build.txt`.

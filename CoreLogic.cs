@@ -1,8 +1,11 @@
-﻿using ProgressLock.Enums;
+﻿using Microsoft.Xna.Framework;
+using ProgressLock.Enums;
 using System;
 using Terraria;
+using Terraria.Chat;
 using Terraria.GameContent.Events;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static ProgressLock.Utils;
 
@@ -20,7 +23,7 @@ namespace ProgressLock
             var config = ProgressLockConfig.Config;
             
             if (npc == null || !npc.active) return true;
-            if (ProgressLock.allBossEntries == null)
+            if (config.NpcEntries == null)
                 return true;
             else
             {
@@ -28,22 +31,22 @@ namespace ProgressLock
                 if (!IsUnlocked(npc, out LockStatus status))
                 {
                     StopNPC(npc);
-                    if (config.ShowMention)
-                    {
+                    
                         switch (status)
                         {
                             case LockStatus.IsManuallyLocked:
-                                Main.NewText($"Boss [{Lang.GetNPCNameValue(npc.type)}] 被手动锁定", 255, 100, 100);
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(GetMentionMsg("NpcManuallyLocked")), Color.IndianRed);
                                 break;
                             case LockStatus.NotTimeYet:
-                                foreach (var entry in ProgressLock.allBossEntries)
+                                foreach (var entry in config.NpcEntries)
                                 {
                                     foreach(var def in entry.DefinitionList)
                                     {
-                                        if (ContentSamples.NpcsByNetId[def.Type] == npc)
+                                        if (def.Type == npc.type)
                                         {
                                             DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(entry.UnlockTimeSec);
-                                            Main.NewText($"Boss [{Lang.GetNPCNameValue(npc.type)}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                                            string formattedDate = unlockTime.ToString("MMM-d HH:mm:ss");
+                                            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(GetMentionMsg("NpcNotTimeYet", Lang.GetNPCNameValue(npc.type), formattedDate)), Color.IndianRed);
                                         }
                                     }
                                     
@@ -52,7 +55,7 @@ namespace ProgressLock
                                
                                 break;
                         }
-                    }
+                    
                 }
                 return false;
             }
@@ -67,25 +70,25 @@ namespace ProgressLock
         {
             
             var config = ProgressLockConfig.Config;
-            if (ProgressLock.allEventEntries == null) return;
-            foreach (var entry in ProgressLock.allEventEntries)
+            if (config.EventEntries == null) return;
+            foreach (var entry in config.EventEntries)
             {
                 if (!IsUnlocked(out LockStatus status, out var matchedEntry))
                 {
                     matchedEntry.Stop();
-                    if (config.ShowMention)
-                    {
+                   
                         switch (status)
                         {
                             case LockStatus.IsManuallyLocked:
-                                Main.NewText($"事件 [{matchedEntry.Name}] 被手动锁定", 255, 100, 100);
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(GetMentionMsg("EventManuallyLocked", Language.GetTextValue($"Mods.ProgressLock.Configs.VanillaEvent.{matchedEntry.Name}.Label"))), Color.IndianRed);
                                 break;
                             case LockStatus.NotTimeYet:
                                 DateTime unlockTime = DateTime.Parse(config.FirstTime).AddSeconds(matchedEntry.UnlockTimeSec);
-                                Main.NewText($"事件 [{matchedEntry.Name}] 将在 {unlockTime:MM-dd HH:mm:ss} 解锁", 255, 100, 100);
+                                string formattedDate = unlockTime.ToString("MMM dd HH:mm:ss");
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(GetMentionMsg("EventNotTimeYet", Language.GetTextValue($"Mods.ProgressLock.Configs.VanillaEvent.{matchedEntry.Name}.Label"), formattedDate)), Color.IndianRed);
                                 break;
                         }
-                    }
+                    
                 }
             }
         }

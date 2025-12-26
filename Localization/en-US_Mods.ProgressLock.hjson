@@ -2,8 +2,8 @@ Configs: {
 	ProgressLockConfig: {
 		DisplayName: Progress Lock Config
 
-		BossEntries: {
-			Label: Boss Entries
+		NpcEntries: {
+			Label: NPC Entries
 			Tooltip: ""
 		}
 
@@ -23,7 +23,7 @@ Configs: {
 		}
 	}
 
-	BossEntry: {
+	NpcEntry: {
 		Tooltip: ""
 
 		DefinitionList: {
@@ -50,6 +50,11 @@ Configs: {
 			Label: Unlock Time Readable
 			Tooltip: ""
 		}
+
+		LockMode: {
+			Label: Lock Mode
+			Tooltip: ""
+		}
 	}
 
 	EventEntry: {
@@ -72,6 +77,16 @@ Configs: {
 
 		IsManuallyLocked: {
 			Label: Is Manually Locked
+			Tooltip: ""
+		}
+
+		Alias: {
+			Label: Alias
+			Tooltip: ""
+		}
+
+		LockMode: {
+			Label: Lock Mode
 			Tooltip: ""
 		}
 	}
@@ -129,14 +144,51 @@ Configs: {
 			Tooltip: ""
 		}
 	}
+
+	LockMode: {
+		Tooltip: ""
+
+		Automatic: {
+			Label: Automatic
+			Tooltip: ""
+		}
+
+		ManuallyLocked: {
+			Label: Manually Locked
+			Tooltip: ""
+		}
+
+		ManuallyUnlocked: {
+			Label: Manually Unlocked
+			Tooltip: ""
+		}
+	}
 }
 
 ProgressInfo: {
-	BossHeader: ===== Boss Progress =====
-	EventHeadr: ===== Event Progress =====
-	FirstStartTime: First Start Time: {0}
+	NpcHeader: ===== NPC Lock List =====
+	EventHeader: ===== Event Lock List =====
+	FirstTime: First Start Time: {0}
 	AllUnlocked: All unlocked!
-	Unlocked: unlocked
-	ManuallyLocked: is manually locked
+	Unlocked: Unlocked
+	ManuallyLocked: Manually locked
 	UnlockCountdown: Unlocks in {0} ({1})
+}
+
+Mention: {
+	ConfigChanged: ProgressLock Configuration updated!
+	NoLockType: Plz type locktype(npc / event) in the 2nd argument
+	NoArgs: Plz type args
+	LockSuccessfully: "{0} locked successfully!"
+	UnlockSuccessfully: "{0} unlocked successfully!"
+	NoneFound: Could not find lock: {0}
+	ModeManuallyLocked: "{0} has been set to: [Force Locked]"
+	ModeManuallyUnlocked: "{0} has been set to: [Force Unlocked]"
+	ModeAutomatic: "{0} has been set to: [Automatic] (Based on time)"
+	NpcManuallyLocked: NPC [[c/81D8D0:{0}]] has been manually locked
+	NpcNotTimeYet: NPC [[c/81D8D0:{0}]] will be unlocked at [[c/81D8D0:{1}]]
+	EventManuallyLocked: Event [[c/81D8D0:{0}]] has been manually locked
+	EventNotTimeYet: Event [[c/81D8D0:{0}]] will be unlocked at [[c/81D8D0:{1}]]
+	NoTargetName: Please specify the name of the NPC/Event you want to toggle
+	Usage: Usage: /progress <npc|event> [page] or /progress toggle <npc|event> <name>
 }

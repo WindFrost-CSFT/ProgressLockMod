@@ -1,9 +1,11 @@
-﻿using ProgressLock.Enums;
+﻿using Newtonsoft.Json;
+using ProgressLock.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Events;
@@ -14,13 +16,19 @@ namespace ProgressLock.Models.Entries
 {
     public class EventEntry
     {
+        
         [CustomModConfigItem(typeof(ScrollableEnumElement))]
+        [JsonProperty(Order = 0)]
         public VanillaEvent Name { get; set; }
 
+
+        public List<string> Alias = new List<string>();
+
+        
         [Range(0, 7776000)]
         public long UnlockTimeSec { get; set; } = 500;
 
-
+        [JsonPropertyOrder(4)]
         public string UnlockTimeReadable
         {
             get
@@ -30,9 +38,9 @@ namespace ProgressLock.Models.Entries
                 return result;
             }
         }
-
-        [DefaultValue(false)]
-        public bool IsManuallyLocked { get; set; } = false;
+       
+        
+        public LockMode LockMode = LockMode.Automatic;
 
         public bool Match()
         {
@@ -105,16 +113,6 @@ namespace ProgressLock.Models.Entries
                     break;
             }
         }
-        public override bool Equals(object obj)
-        {
-            if (obj is EventEntry other)
-                return Name == other.Name && UnlockTimeSec == other.UnlockTimeSec;
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return (Name, UnlockTimeSec).GetHashCode();
-        }
+       
     }
 }

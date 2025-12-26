@@ -10,6 +10,7 @@ namespace ProgressLock.UI
 {
     class NPCDefinitionFilterElement : NPCDefinitionElement
     {
+        //暂时未启用
         public override List<DefinitionOptionElement<NPCDefinition>> GetPassedOptionElements()
             => [.. (from elem in base.GetPassedOptionElements()
                     let npc = ContentSamples.NpcsByNetId[elem.Definition.Type]

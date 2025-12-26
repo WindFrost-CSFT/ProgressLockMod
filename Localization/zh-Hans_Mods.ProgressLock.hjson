@@ -2,8 +2,8 @@ Configs: {
 	ProgressLockConfig: {
 		DisplayName: 进度限制配置
 
-		BossEntries: {
-			Label: Boss 条目
+		NpcEntries: {
+			Label: NPC 条目
 			Tooltip: ""
 		}
 
@@ -23,7 +23,7 @@ Configs: {
 		}
 	}
 
-	BossEntry: {
+	NpcEntry: {
 		Tooltip: ""
 
 		DefinitionList: {
@@ -50,6 +50,11 @@ Configs: {
 			Label: 时长
 			Tooltip: ""
 		}
+
+		LockMode: {
+			Label: 锁定模式
+			Tooltip: ""
+		}
 	}
 
 	EventEntry: {
@@ -74,6 +79,16 @@ Configs: {
 			Label: 手动锁定
 			Tooltip: ""
 		}
+
+		Alias: {
+			Label: 别称
+			Tooltip: ""
+		}
+
+		LockMode: {
+			Label: 锁定模式
+			Tooltip: ""
+		}
 	}
 
 	VanillaEvent: {
@@ -81,62 +96,99 @@ Configs: {
 
 		GoblinArmy: {
 			Label: 哥布林军队
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		BloodMoon: {
 			Label: 血月
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		ArmyOfDarkness: {
 			Label: 撒旦军队
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		PirateInvasion: {
 			Label: 海盗入侵
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		PumpkinMoon: {
 			Label: 南瓜月
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		FrostLegion: {
 			Label: 雪人军团
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		MartianMadness: {
 			Label: 火星暴乱
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LunarEvents: {
 			Label: 月亮事件
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		FrostMoon: {
 			Label: 霜月
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		SolarEclipse: {
 			Label: 日食
+			Tooltip: ""
+		}
+	}
+
+	LockMode: {
+		// Tooltip: ""
+
+		Automatic: {
+			Label: 到点解锁
+			// Tooltip: ""
+		}
+
+		ManuallyLocked: {
+			Label: 手动锁定
+			// Tooltip: ""
+		}
+
+		ManuallyUnlocked: {
+			Label: 手动解锁
 			// Tooltip: ""
 		}
 	}
 }
 
 ProgressInfo: {
-	BossHeader: ===== Boss进度列表 =====
-	EventHeadr: ===== 事件进度列表 =====
-	FirstStartTime: 开服时间: {0}
+	NpcHeader: ===== NPC 限制列表 =====
+	EventHeader: ===== 事件限制列表 =====
+	FirstTime: 开服时间: {0}
 	AllUnlocked: 已全部解锁!
 	Unlocked: 已解锁
-	ManuallyLocked: 已被手动上锁
+	ManuallyLocked: 已被手动锁定
 	UnlockCountdown: "{0} 后解锁 ({1})"
+}
+
+Mention: {
+	ConfigChanged: 进度限制配置已更新!
+	NoLockType: 请在第二个参数中输入限制类型 (npc/event)
+	NoArgs: 请提供参数！
+	LockSuccessfully: 已将 {0} 的限制锁上锁！
+	UnlockSuccessfully: 已解锁 {0} 的限制锁！
+	NoneFound: 未找到名称为 {0} 的限制锁！
+	ModeManuallyLocked: "{0} 已切换至：[强制锁定]"
+	ModeManuallyUnlocked: "{0} 已切换至：[强制解锁]"
+	ModeAutomatic: "{0} 已切换至：[到点解锁] "
+	NpcManuallyLocked: NPC [[c/81D8D0:{0}]] 被手动锁定
+	NpcNotTimeYet: NPC [[c/81D8D0:{0}]] 将在 [[c/81D8D0:{1}]] 解锁
+	EventManuallyLocked: 事件 [[c/81D8D0:{0}]] 被手动锁定
+	EventNotTimeYet: 事件 [[c/81D8D0:{0}]] 将在 [[c/81D8D0:{1}]] 解锁
+	NoTargetName: 请指定要切换的 NPC 或事件名称 (例如：/progress toggle npc 克苏鲁之眼)
+	Usage: 用法: /progress <npc|event> [页码] 或 /progress toggle <npc|event> [名称]
 }

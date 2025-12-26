@@ -11,6 +11,7 @@ namespace ProgressLock.Enums
         Unlocked,           // 已解锁
         NotTimeYet,         // 时间未到
         IsManuallyLocked,     // 手动上锁
+        IsManuallyUnlocked,   // 手动解锁
         Other      // 其他
     }
 }

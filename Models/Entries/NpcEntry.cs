@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
+using ProgressLock.Enums;
 
 namespace ProgressLock.Models.Entries
 {
-    public class BossEntry
+    public class NpcEntry
     {
 
-        public List<NPCDefinition> DefinitionList = new List<NPCDefinition>{
+        public List<NPCDefinition> DefinitionList  = new List<NPCDefinition>{
             new NPCDefinition("Terraria", "KingSlime"),
         };
 
@@ -31,7 +32,7 @@ namespace ProgressLock.Models.Entries
         }
 
 
-        public bool IsManuallyLocked  = false;
+        public LockMode LockMode = LockMode.Automatic;
 
         public void Stop(NPC npc)
         {
@@ -44,17 +45,6 @@ namespace ProgressLock.Models.Entries
             npc.whoAmI // 发送哪一个 NPC
             );
         }
-        public override bool Equals(object obj)
-        {
-            if (obj is BossEntry other)
-                return DefinitionList == other.DefinitionList && UnlockTimeSec == other.UnlockTimeSec;
-            return false;
-        }
-
-
-        public override int GetHashCode()
-        {
-            return (DefinitionList, UnlockTimeSec).GetHashCode();
-        }
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ProgressLock.Enums;
 using ReLogic.Reflection;
 using System;
 using System.Collections;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static ProgressLock.ProgressLockWorld;
 using static ProgressLock.Utils;
@@ -19,15 +21,22 @@ namespace ProgressLock.Commands
         public override CommandType Type => CommandType.Chat;
         public override string Command => "progress";
 
-        public override string Description => "Show progress lock info";
+        public override string Description => Language.ActiveCulture.Name == "zh-Hans"
+                                                                            ? "查看或管理服务器进度限制"
+                                                                            : "View or manage server-side progress lock";
 
+        public override string Usage => Language.GetTextValue($"Mods.ProgressLock.Mention.Usage");
         public override void Action(CommandCaller caller, string input, string[] args)
         {
             if (args.Length == 0)
             {
-                caller.Reply("请提供参数！", Color.Red);
+                caller.Reply(GetMentionMsg("NoArgs"), Color.Red);
                 return;
             }
+
+            // 处理分页逻辑：如果第二个参数存在则作为页码，否则默认为 "1"
+            string pageStr = args.Length > 1 ? args[1] : "1";
+
             switch (args[0].ToLower())
             {
                 case "boss":
@@ -35,10 +44,11 @@ namespace ProgressLock.Commands
                 case "1":
                 case "npc":
                     {
-                        caller.Reply(Utils.GetBossProgressInfo(caller.Player, args[0])); 
+                        // 注意：这里传入 pageStr 而不是 args[0]
+                        caller.Reply(GetNpcProgressInfo(caller.Player, pageStr));
                     }
                     break;
-              
+
                 case "事件":
                 case "入侵":
                 case "event":
@@ -47,44 +57,79 @@ namespace ProgressLock.Commands
                 case "2":
                 case "e":
                     {
-                        caller.Reply(Utils.GetEventProgressInfo(caller.Player, args[0]));
+                        caller.Reply(Utils.GetEventProgressInfo(caller.Player, pageStr));
                     }
                     break;
+
                 case "switch":
                 case "切换":
                 case "toggle":
+                case "t":
                     {
                         if (args.Length < 2)
                         {
-                            caller.Reply("请提供要切换限制锁的名称！", Color.Red);
+                            caller.Reply(GetMentionMsg("NoLockType"), Color.Red);
                             return;
                         }
-                        bool? lockStatus;
-                        bool flag = ToggleBossLock(caller.Player, args[1],out lockStatus);
-                        if (flag)
-                        {
-                            if ((bool)lockStatus)
-                            {
-                                caller.Reply($"已将 {args[1]} 的限制锁上锁！", Color.Green);
 
+                        if (args.Length < 3)
+                        {
+                            caller.Reply(GetMentionMsg("NoTargetName"), Color.Red); // 需新增：请指定名称
+                            return;
+                        }
+
+                        string subType = args[1].ToLower();
+                        string targetName = args[2];
+
+                        if (subType == "npc" || subType == "boss" || subType == "b" || subType == "n" || subType == "1")
+                        {
+                            if (ToggleNpcLock(caller.Player, targetName, out LockMode newMode))
+                            {
+                                SendModeReply(caller, targetName, newMode);
                             }
                             else
                             {
-                                caller.Reply($"已解锁 {args[1]} 的限制锁！", Color.Green);
-                                
+                                caller.Reply(GetMentionMsg("NoneFound", targetName), Color.Red);
+                            }
+                        }
+                        else if (subType == "event" || subType == "e" || subType == "2" || subType == "invasion" || subType == "i")
+                        {
+                            if (ToggleEventLock(caller.Player, targetName, out LockMode newMode))
+                            {
+                                SendModeReply(caller, targetName, newMode);
+                            }
+                            else
+                            {
+                                caller.Reply(GetMentionMsg("NoneFound", targetName), Color.Red);
                             }
                         }
                         else
                         {
-                            caller.Reply($"未找到名称为 {args[1]} 的限制锁！", Color.Red);
+                            caller.Reply(GetMentionMsg("NoLockType"), Color.Red);
                         }
-                        break;
                     }
+                    break;
             }
-            
         }
 
-        
+        // 辅助方法：根据切换后的模式发送对应的本地化回复
+        private void SendModeReply(CommandCaller caller, string name, LockMode mode)
+        {
+            switch (mode)
+            {
+                case LockMode.ManuallyLocked:
+                    caller.Reply(GetMentionMsg("ModeManuallyLocked", name), Color.Orange);
+                    break;
+                case LockMode.ManuallyUnlocked:
+                    caller.Reply(GetMentionMsg("ModeManuallyUnlocked", name), Color.Green);
+                    break;
+                case LockMode.Automatic:
+                    caller.Reply(GetMentionMsg("ModeAutomatic", name), Color.Cyan);
+                    break;
+            }
+        }
+
+
     }
     
 }

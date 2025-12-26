@@ -10,8 +10,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using Terraria;
+using Terraria.Chat;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
@@ -29,34 +31,30 @@ namespace ProgressLock
         [DefaultValue("2025-12-19 10:30:10")]
         public string FirstTime { get; set; } = "2025-12-19 10:30:10";
 
-        public List<BossEntry> BossEntries;
+        public List<NpcEntry> NpcEntries { get; set; }
 
-        public List<EventEntry> EventEntries;
+        public List<EventEntry> EventEntries { get; set; }
 
-        // public List<VanillaBossEntry> VanillaBossEntryList;
+        
 
-        // public List<CalamityBossEntry> CalamityBossEntryList;
 
-        // public List<VanillaEventEntry> VanillaEventEntryList;
-
-        [DefaultValue(true)]
-        public bool ShowMention = true;
+       
 
         // 构造函数设置默认值
         public ProgressLockConfig()
         {
-            BossEntries = new List<BossEntry>
+            NpcEntries = new List<NpcEntry>
             {
-                new BossEntry { DefinitionList = new List<NPCDefinition>{ new NPCDefinition("Terraria", "KingSlime")}, UnlockTimeSec = 5000, IsManuallyLocked = false },
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("Terraria", "EaterofWorldsHead")}, UnlockTimeSec = 10000, IsManuallyLocked = false },
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 7000 , IsManuallyLocked = false},
-                new BossEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 12000 , IsManuallyLocked = false },
+                new NpcEntry { DefinitionList = new List<NPCDefinition>{ new NPCDefinition("Terraria", "KingSlime")}, UnlockTimeSec = 50000 },
+                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("Terraria", "EaterofWorldsHead"), new ("Terraria", "EaterofWorldsBody") , new ("Terraria", "EaterofWorldsTail") }, UnlockTimeSec = 100000 },
+                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","DesertScourge")} , UnlockTimeSec = 70000 },
+                new NpcEntry { DefinitionList = new List<NPCDefinition>{new ("CalamityMod","TheSlimeGod")} , UnlockTimeSec = 120000 },
             };
             EventEntries = new List<EventEntry>
             {
-                new EventEntry { Name = VanillaEvent.FrostLegion, UnlockTimeSec = 8000, IsManuallyLocked = false },
-                new EventEntry { Name = VanillaEvent.MartianMadness, UnlockTimeSec = 15000, IsManuallyLocked = false  },
-                new EventEntry { Name = VanillaEvent.PumpkinMoon, UnlockTimeSec = 20000, IsManuallyLocked = false  },
+                new EventEntry { Name = VanillaEvent.FrostLegion, UnlockTimeSec = 80000,Alias = new List<string>{"军团"}  },
+                new EventEntry { Name = VanillaEvent.MartianMadness, UnlockTimeSec = 150000 },
+                new EventEntry { Name = VanillaEvent.PumpkinMoon, UnlockTimeSec = 200000 },
             };
 
 
@@ -71,58 +69,13 @@ namespace ProgressLock
         {
             if (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.Server)
             {
-                Main.NewText("进度锁配置已更新！", 100, 255, 100);
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Utils.GetMentionMsg("ConfigChanged")),Color.Aqua);
             }
-            //Main.NewText($"配置更新 - Boss数量: {VanillaBossEntryList?.Count ?? 0}", 100, 255, 100);
-            //Main.NewText($"FirstTime: {FirstTime}", 100, 255, 100);
-            //Main.NewText($"ShowMention: {ShowMention}", 100, 255, 100);
+          
         }
 
         
-        public IEnumerable<BossEntry> GetAllBossEntries()
-        {
-            var fields = GetType().GetFields(
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-            foreach (var field in fields)
-            {
-                if (!field.FieldType.IsGenericType)
-                    continue;
-
-                var genericType = field.FieldType.GetGenericArguments()[0];
-
-                if (!typeof(BossEntry).IsAssignableFrom(genericType))
-                    continue;
-
-                if (field.GetValue(this) is IEnumerable list)
-                {
-                    foreach (var entry in list)
-                        yield return (BossEntry)entry;
-                }
-            }
-        }
-        public IEnumerable<EventEntry> GetAllEventEntries()
-        {
-            var fields = GetType().GetFields(
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-            foreach (var field in fields)
-            {
-                if (!field.FieldType.IsGenericType)
-                    continue;
-
-                var genericType = field.FieldType.GetGenericArguments()[0];
-
-                if (!typeof(EventEntry).IsAssignableFrom(genericType))
-                    continue;
-
-                if (field.GetValue(this) is IEnumerable list)
-                {
-                    foreach (var entry in list)
-                        yield return (EventEntry)entry;
-                }
-            }
-        }
+       
     }
 
     

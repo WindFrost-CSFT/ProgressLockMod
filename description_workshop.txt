@@ -1,2 +1,54 @@
-A Server-Side-Mod which can lock game progress , In case that some Pros speedrun.
-Support Calamity mod
+[h1]进度限制锁 (Progress Lock)[/h1]
+
+这是一个能定时解锁 NPC 和事件的 Mod，防止 Pro 哥速通服务器。
+A mod that time-locks NPCs and Events to prevent server speedrunning.
+
+[h2]功能 | Features[/h2]
+[list]
+[*] [b]三种锁定模式 (Three Modes)[/b]
+到点解锁、手动锁定（到点不放）、手动解锁（直接强开）。
+Time-based Unlock, Hard Lock (stays locked), and Force Unlock (instant access).
+
+[*] [b]指令查询 (Command Search)[/b]
+支持指令查询限制名单与解锁时间。
+Check the lock-list and countdowns via commands.
+
+[*] [b]NPC 兼容性 (NPC Compatibility)[/b]
+支持所有 Mod 的 NPC。
+Compatible with all modded NPCs.
+
+[*] [b]事件兼容性 (Event Compatibility)[/b]
+事件暂时只支持原版。
+Events currently support Vanilla only.
+
+[*] [b]Boss 适配 (Boss Support)[/b]
+支持多部位 Boss 和多体节 Boss。
+Full support for multi-part and multi-segment Bosses.
+
+[*] [b]别名系统 (Alias System)[/b]
+支持为 Boss 和事件添加自定义别名。
+Supports custom aliases for Bosses and Events.
+
+[*] [b]本地化 (Localization)[/b]
+完整支持中文与英文。
+Full support for Chinese and English.
+[/list]
+
+[h2]指令手册 | Command Manual[/h2]
+主指令 (Main Command): [b]/progress[/b] 
+
+[b]1. 查看进度 (View Progress)[/b]
+用法 (Usage): [i]/progress <分类/type> [页码/page][/i]
+别名 (Aliases): 
+- NPC: npc, boss, b, n, 1
+- Event: event, e, i, 2, 事件, 入侵
+
+[b]2. 切换模式 (Toggle Mode)[/b]
+用法 (Usage): [i]/progress toggle <分类/type> <名称/name>[/i]
+别名 (Aliases): toggle, switch, t, 切换
+
+------------------------------------------------------------
+[b]注意 (Note):[/b] 这是一个非强制同步 (NoSync) 模组。
+This is a NoSync mod (Server-side).
+
+GitHub: [url]https://github.com/WindFrost-CSFT/ProgressLockMod[/url]

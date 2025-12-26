@@ -10,7 +10,6 @@
 
 	<!-- References -->
 	<ItemGroup>
-	  <Compile Remove="Enums\VanillaEvent.cs" />
 	  <Compile Remove="Models\ILockEntry.cs" />
 	</ItemGroup>
 	<ItemGroup>

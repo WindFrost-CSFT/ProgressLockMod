@@ -3,7 +3,7 @@
 ![Terraria Mod](https://img.shields.io/badge/Terraria-Mod-orange.svg)
 ![TModLoader](https://img.shields.io/badge/TModLoader-1.4.4+-blue.svg)
 
-这是一个能定时解锁 NPC 和事件的 Mod，旨在防止Pro速通服务器。
+这是一个能定时解锁 NPC 和事件的 Mod，防止Pro速通服务器。
 A progress-control mod that time-locks NPCs and Events to prevent server speedrunning.
 
 ---

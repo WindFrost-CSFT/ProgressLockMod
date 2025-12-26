@@ -23,7 +23,7 @@ namespace ProgressLock
 {
     public class ProgressLockConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ClientSide;
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
         public static ProgressLockConfig Config;
 

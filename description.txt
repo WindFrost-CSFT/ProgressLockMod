@@ -5,24 +5,33 @@ A mod that time-locks NPCs and Events to prevent server speedrunning.
 
 [c/FFFF00:核心功能 | Features:]
 - 三种模式 (3 Modes): 到点解锁 / 手动锁定 / 手动解锁
+  (Time-based Unlock / Hard Lock / Force Unlock)
 - 指令查询 (Commands): 支持查询限制名单与时间
+  (Check lock-lists and countdowns via commands)
 - NPC 兼容性 (NPCs): 支持所有 Mod 的 NPC
-- 事件兼容性 (Events): 暂仅支持原版 (Vanilla Only)
+  (Compatible with all Modded NPCs)
+- 事件兼容性 (Events): 暂仅支持原版
+  (Vanilla Events only)
 - Boss 适配 (Bosses): 支持多部位与多体节 Boss
+  (Supports multi-part and multi-segment Bosses)
 - 别名系统 (Aliases): 支持为 Boss/事件添加别名
+  (Custom aliases for Bosses and Events)
 - 本地化 (Lang): 支持中文/English
+  (Full Chinese and English support)
 
 [c/FFFF00:指令手册 | Commands:]
-主指令: /progress
+主指令 (Main Command): /progress (Alias: /pl)
 
 1. 查看进度 (View Progress)
-用法: /progress <分类/type> [页码/page]
-分类别名: npc, boss, b, n, 1 | event, e, i, 2
+用法 (Usage): /progress <分类/type> [页码/page]
+分类别名 (Type Aliases): npc, boss, b, n, 1 | event, e, i, 2
 
 2. 切换模式 (Toggle Mode)
-用法: /progress toggle <分类/type> <名称/name>
-动作别名: toggle, switch, t, 切换
+用法 (Usage): /progress toggle <分类/type> <名称/name>
+动作别名 (Action Aliases): toggle, switch, t, 切换
 
 [c/FFA500:注意 (Note):]
-这是一个非强制同步 (NoSync) 模组。
+这是一个服务器模组。
+This is a server-side mod.
+
 GitHub: https://github.com/WindFrost-CSFT/ProgressLockMod

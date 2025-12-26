@@ -50,3 +50,9 @@ A progress-control mod that time-locks NPCs and Events to prevent server speedru
 * `/progress switch event 哥布林军队` — 切换哥布林入侵的锁定模式。
 
 ---
+
+### 注意事项 | Note
+
+> **[ZH]** 这是一个服务器端模组。如果服务器没有鉴权逻辑，请将 `build.txt` 中的 **Side** 设置为 **Server** 或 **NoSync**。
+>
+> **[EN]** This is a server-side mod. If your server lacks authentication logic, please change **Side** to **Server** or **NoSync** in your `build.txt`.
